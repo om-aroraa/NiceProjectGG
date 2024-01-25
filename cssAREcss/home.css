@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+}
+.container {
+    display: flex;
+    position: relative;
+}
+
+.sidebar {
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.left {
+    background-color: #ffffff;
+    width: 250px;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+.suggestions {
+    margin-top: 20px;
+}
+
+.suggestion {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.right {
+    background-color: #ffffff;
+    width: 250px;
+    right: 0;
+    top: 0;
+    z-index: 2;
+}
+
+.content {
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 20px;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.navbar {
+    background-color: #ffffff;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around ;
+    align-items: center;
+    position: fixed;
+    width: 55%;
+    top: 0;
+    z-index: 1;
+}
+
+.home-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+    overflow-y: auto;
+    flex-grow: 1;
+    position: relative;
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: #3897f0 #f8f8f8;
+    /* Firefox */
+
+    /* Webkit (Chrome, Safari) */
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #3897f0;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #f8f8f8;
+    }
+}
+
+.friend-posts {
+    width: 60%;
+}
+
+.friend-post {
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.friend-post img {
+    width: 100%;
+    height: auto;
+}
+
+.post-details {
+    padding: 15px;
+}
+
+.friend-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.post-time {
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.nav-item {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: #333;
+    margin-right: 20px;
+}
+
+.nav-item:hover {
+    color: #3897f0;
+}
+
+.profile {
+    background-color: #3897f0;
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .content {
+        order: 1;
+    }
+
+    .navbar {
+        overflow-x: auto;
+    }
+
+    .home-section {
+        margin: 20px;
+    }
+
+    .friend-posts {
+        width: 100%;
+    }
+}
