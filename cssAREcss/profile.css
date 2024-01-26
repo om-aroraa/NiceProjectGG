@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left {
+    background-color: #ffffff;
+    width: 250px;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.content {
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 20px;
+    margin-left: 250px;
+}
+
+.navbar {
+    background-color: #ffffff;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    /* Adjust spacing as needed */
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+.nav-item {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: #333;
+}
+
+.nav-item:hover {
+    color: #3897f0;
+}
+
+.profile {
+    background-color: #3897f0;
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+}
+
+.profile-photo {
+    width: 80px;
+    height: 80px;
+    background-color: #333;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.username h2 {
+    margin-right: 10px;
+}
+
+.profile-buttons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.edit-profile,
+.view-archive,
+.settings-icon {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.settings-icon:hover {
+    color: #3897f0;
+}
+
+.stats {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.stat {
+    margin-right: 20px;
+}
+
+.post-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.post {
+    flex: 0 0 calc(33.33% - 20px);
+    height: 250px;
+    background-color: #333;
+    border-radius: 8px;
+}
+
+.post img{
+        flex: 0 0 calc(33.33% - 20px);
+            height: 250px;
+            background-color: #333;
+            border-radius: 8px;
+}
+
+/* ... Rest of the CSS rules ... */
