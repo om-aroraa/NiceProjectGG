@@ -1,6 +1,10 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
+<<<<<<< Updated upstream
+=======
+    background-color: #fafafa;
+>>>>>>> Stashed changes
 }
 
 .container {
@@ -8,6 +12,7 @@ body {
 }
 
 .sidebar {
+<<<<<<< Updated upstream
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -39,6 +44,47 @@ body {
     width: 100%;
     top: 0;
     z-index: 1;
+=======
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 250px;
+}
+
+.sidebar h2 {
+    margin-bottom: 10px;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-list li {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.user-list li:hover {
+    background-color: #777;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+>>>>>>> Stashed changes
 }
 
 .nav-item {
@@ -52,6 +98,7 @@ body {
 }
 
 .profile {
+<<<<<<< Updated upstream
     background-color: #3897f0;
     color: #ffffff;
     padding: 8px 15px;
@@ -68,11 +115,124 @@ body {
 .user-details {
     display: flex;
     align-items: center;
+=======
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 20px;
+}
+
+/* The rest of your CSS remains unchanged */
+
+/* Add the following styles at the end of your existing CSS */
+
+.nav-divider {
+    margin: 0.5rem 0;
+    border-top: 1px solid #ccc;
+}
+
+.nav-item.active {
+    border-bottom: 2px solid #3897f0;
+    padding-bottom: 4px;
+}
+
+/* The rest of your CSS remains unchanged */
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fafafa;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 250px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.suggestions {
+    color: #fff;
+    /* Add your styles for suggestions */
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+
+.nav-item {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: #333;
+}
+
+.nav-item:hover {
+    color: #3897f0;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.posts,
+.reels {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.post,
+.reel {
+    width: calc((100% - 40px) / 3);
+    /* 100% width with 20px gap between items */
+    height: 200px;
+    /* Set your desired height */
+    background-color: #ddd;
+    /* Placeholder background color */
+    margin-bottom: 20px;
+}
+
+.reel video {
+    object-fit: cover;
+}
+
+/* The rest of your CSS remains unchanged */
+/* Add the following styles at the end of your existing CSS */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+>>>>>>> Stashed changes
 }
 
 .profile-photo {
     width: 80px;
     height: 80px;
+<<<<<<< Updated upstream
     background-color: #333;
     border-radius: 50%;
     margin-right: 20px;
@@ -109,10 +269,22 @@ body {
 
 .settings-icon:hover {
     color: #3897f0;
+=======
+    border-radius: 50%;
+    background-color: #ddd;
+    /* Placeholder background color */
+    margin-right: 20px;
+}
+
+.profile-info h1 {
+    margin: 0;
+    font-size: 1.2em;
+>>>>>>> Stashed changes
 }
 
 .stats {
     display: flex;
+<<<<<<< Updated upstream
     margin-bottom: 10px;
 }
 
@@ -141,3 +313,96 @@ body {
 }
 
 /* ... Rest of the CSS rules ... */
+=======
+    margin-top: 8px;
+}
+
+.stats span {
+    margin-right: 20px;
+}
+
+.bio {
+    margin-top: 10px;
+}
+
+.tabs {
+    display: flex;
+    margin-top: 10px;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.tab.active {
+    border-bottom: 2px solid #3897f0;
+    padding-bottom: 4px;
+}
+
+/* The rest of your CSS remains unchanged */
+/* Your existing CSS */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fafafa;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 250px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.suggestions {
+    color: #fff;
+    /* Add your styles for suggestions */
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.nav-item {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: #333;
+}
+
+.nav-item:hover {
+    color: #3897f0;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* Ensure content is displayed in a column */
+    align-items: center;
+    /* Center content horizontally */
+    margin-top: 20px;
+}
+
+/* ... Remaining styles for the profile section ... */
+>>>>>>> Stashed changes
