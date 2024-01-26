@@ -14,7 +14,7 @@ const db = mysql.createConnection({
     database: 'slidin'
     });
 
-app.use(express.static(path.join(__dirname, 'profilepics')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload({
     createParentPath: true
 }));
@@ -39,14 +39,14 @@ app.get('/login', (req, res) => {
         if (results.length === 0) return res.send('No user with that username')
         let imgpath = results[0].imgpath;
         if (!imgpath) imgpath = '/profilepics/default.png';
-        res.render('login', {path:imgpath, username:username});
+        res.render('profile', {path:imgpath, username:username});
     });
 });
 
 app.post("/",(req,res)=>{
     const {fullname,username,email,password,gender} = req.body;
     let profile_pic = req.files.profilePicture;
-    let imgpath = '/profilepics/' + `/${username}/` + profile_pic.name;
+    let imgpath = '/profilepics/' + `${username}/` + profile_pic.name;
     console.log(profile_pic)
     // Check if username already exists
     db.query("select * from users where username = ?", [username], (err, result) => {
@@ -62,15 +62,27 @@ app.post("/",(req,res)=>{
                 [fullname, username, email, password, gender, imgpath],
                 (err, result) => {
                     if (err) throw err;
-                    profile_pic.mv(`${__dirname}/profilepics/${username}/${profile_pic.name}`, function(err){
+                    profile_pic.mv(`${__dirname}/public/profilepics/${username}/${profile_pic.name}`, function(err){
                         if (err) return res.status(500).send(err);
                         res.cookie("user", username, {maxAge: 3600000});
-                        res.send(`Login Successful! Welcome ${username}!`);
+                        res.redirect('/profile');
                     });
                 })
             })
         })
     });
+
+app.get('/profile', (req, res) => {
+    let username = req.cookies.user;
+    if (!username) return res.redirect('/');
+    db.query('SELECT imgpath FROM users WHERE username = ?', [username], (err, results) => {
+        if (err) throw err;
+        if (results.length === 0) return res.send('No user with that username')
+        let imgpath = results[0].imgpath;
+        if (!imgpath) imgpath = '/profilepics/default.png';
+        res.render('profile', {path:imgpath, username:username});
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
