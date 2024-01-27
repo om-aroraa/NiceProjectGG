@@ -5,11 +5,10 @@ body {
 }
 .container {
     display: flex;
-    position: relative;
 }
 
 .sidebar {
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     height: 100vh;
@@ -22,6 +21,49 @@ body {
     left: 0;
     top: 0;
     z-index: 2;
+}
+
+#image-container {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+
+#profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#crop-preview {
+    position: absolute;
+    border: 2px solid #fff;
+    box-sizing: content-box;
+}
+
+#crop-preview::before,
+#crop-preview::after {
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#crop-preview::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+}
+
+#crop-preview::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
 }
 
 .suggestions {
@@ -48,52 +90,15 @@ body {
     overflow: hidden;
     padding: 20px;
     margin-left: 250px;
-    margin-right: 250px;
 }
 
-.navbar {
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-around ;
-    align-items: center;
-    position: fixed;
-    width: 70%;
-    top: 0;
-    z-index: 1;
-}
-
-#more-btns{
-    margin-left: -500px;
-}
-
-.home-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 70px;
-    overflow-y: auto;
+.content {
     flex-grow: 1;
-    position: relative;
-    scrollbar-width: thin;
-    /* Firefox */
-    scrollbar-color: #3897f0 #f8f8f8;
-    /* Firefox */
-
-    /* Webkit (Chrome, Safari) */
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #3897f0;
-    }
-
-    &::-webkit-scrollbar-track {
-        background-color: #f8f8f8;
-    }
+    overflow: hidden;
+    padding: 20px;
+    margin-left: 250px;
 }
+
 
 .friend-posts {
     width: 60%;
@@ -138,23 +143,6 @@ textarea {
     margin-bottom: 10px;
 }
 
-.nav-item {
-    cursor: pointer;
-    transition: color 0.3s ease;
-    color: #333;
-    margin-right: 20px;
-}
-
-.nav-item:hover {
-    color: #3897f0;
-}
-
-.profile {
-    background-color: #3897f0;
-    color: #ffffff;
-    padding: 8px 15px;
-    border-radius: 20px;
-}
 
 /* Media query for responsiveness */
 @media (max-width: 768px) {
@@ -181,4 +169,25 @@ textarea {
     .friend-posts {
         width: 100%;
     }
+}
+
+.navbar {
+    margin-left: 100px;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    width: 75%;
+    top: -20px;
+    left: -20px;
+    z-index: 1;
+}
+
+.nav-item {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: #333;
 }

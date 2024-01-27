@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/cssAREcss/profile.css">
+
+    <link rel="stylesheet" href="/cssAREcss/home.css">
     <title>Instagram-like UI</title>
 </head>
 
 <body>
 
-  <body>
     <div class="container">
-      <div class="content">
-        <div class="navbar">
+        <div class="sidebar left">
+            <div class="logo">Your Logo</div>
+            <div class="suggestions">
+                <!-- You can dynamically add suggestions here -->
+                <div class="suggestion">Game 1</div>
+                <div class="suggestion">Game 2</div>
+                <div class="suggestion">Game 3</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="navbar">
           <div class="nav-item">
             <a href="/home"><?xml version="1.0" ?><svg enable-background="new 0 0 32 32" id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px"><path d="M30.854,16.548C30.523,17.43,29.703,18,28.764,18H28v11c0,0.552-0.448,1-1,1h-6v-7c0-2.757-2.243-5-5-5  s-5,2.243-5,5v7H5c-0.552,0-1-0.448-1-1V18H3.235c-0.939,0-1.759-0.569-2.09-1.451c-0.331-0.882-0.088-1.852,0.62-2.47L13.444,3.019  c1.434-1.357,3.679-1.357,5.112,0l11.707,11.086C30.941,14.696,31.185,15.666,30.854,16.548z" id="XMLID_219_"/></svg></svg></a>
           </div>
@@ -33,97 +42,48 @@
           </div>
           <div class="nav-item profile">
             <div id="image-container">
-              <img id="profile-image" src="<%=path%>" alt="" srcset="" />
+              <a href="/profile"><img id="profile-image" src="<%=path%>" alt="" srcset="" /></a>
               <div id="crop-preview"></div>
             </div>
           </div>
-        </div>
-        <div class="profile-section">
-          <div class="user-details">
-            <div id="image-container1">
-                    <img id="profile-image1" src="<%=path%>" alt="" srcset="" />
-                    <div id="crop-preview1"></div>
+            </div>
+            <div class="home-section">
+                <div class="friend-posts">
+                    <!-- Add more friend posts here -->
+                    <div class="friend-post">
+                        <img src="/homeimages/cubes.webp" alt="Friend Post">
+                        <div class="post-details">
+                            <p class="friend-name">Friend's Name</p>
+                            <p class="post-time">2 hours ago</p>
+                            <p class="post-content">This is a temporary post. Write your reply below.</p>
+                            <textarea placeholder="Write your reply..."></textarea>
+                        </div>
+                    </div>
+                    <div class="friend-post">
+                        <img src="/homeimages/cubes.webp" alt="Friend Post">
+                        <div class="post-details">
+                            <p class="friend-name">Friend's Name</p>
+                            <p class="post-time">2 hours ago</p>
+                            <p class="post-content">This is a temporary post. Write your reply below.</p>
+                            <textarea placeholder="Write your reply..."></textarea>
+                        </div>
+                    </div>
+                    <div class="friend-post">
+                        <img src="/homeimages/cubes.webp" alt="Friend Post">
+                        <div class="post-details">
+                            <p class="friend-name">Friend's Name</p>
+                            <p class="post-time">2 hours ago</p>
+                            <p class="post-content">This is a temporary post. Write your reply below.</p>
+                            <textarea placeholder="Write your reply..."></textarea>
+                        </div>
+                    </div>
+                    <!-- ... -->
                 </div>
             </div>
-            <div class="user-info">
-              <div class="username">
-                <h2><%=username%></h2>
-                <div class="profile-buttons">
-                  <button class="edit-profile">Edit Profile</button>
-                  <button class="view-archive">View Archive</button>
-                  <a href="#" class="settings-icon">⚙️</a>
-                </div>
-              </div>
-              <div class="stats">
-                <span class="stat">Posts: 100</span>
-                <span class="stat">Friend: 500</span>
-              </div>
-              <h3><%=fullname%></h3>
-              <p class="bio">Your bio goes here...</p>
-            </div>
-          </div>
-          <div class="post-grid">
-            <!-- Add posts grid here -->
-            <div class="post">
-              <img src="/homeimages/cubes.webp" alt="" />
-            </div>
-            <div class="post">
-              <img src="/homeimages/cubes.webp" alt="" />
-            </div>
-            <div class="post">
-              <img src="/homeimages/cubes.webp" alt="" />
-            </div>
-            <div class="post">
-              <img src="/homeimages/cubes.webp" alt="" />
-            </div>
-            <div class="post">
-              <img src="/homeimages/cubes.webp" alt="" />
-            </div>
-            <div class="post">
-              <img src="/homeimages/cubes.webp" alt="" />
-            </div>
-            <div class="post">
-              <img src="/homeimages/cubes.webp" alt="" />
-            </div>
-            <!-- ... -->
-            <div class="tabs">
-              <span class="tab active" onclick="toggleSection('posts')">Posts</span>
-              <span class="tab" onclick="toggleSection('reels')">Reels</span>
-            </div>
-            <div class="posts show">
-              <div class="post">
-                <img src="/homeimages/cubes.webp" alt="">
-              </div>
-              <div class="post"></div>
-              <div class="post"></div>
-              <!-- Add more post items as needed -->
-            </div>
-            <div class="reels">
-              <div class="reel">
-                <video controls width="100%" height="100%">
-                  <source src="https://www.example.com/sample1.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="reel">
-                <video controls width="100%" height="100%">
-                  <source src="https://www.example.com/sample2.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <div class="reel">
-                <video controls width="100%" height="100%">
-                  <source src="https://www.example.com/sample3.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-          </div>
         </div>
-      </div>
     </div>
-    <script src="script.js"></script>
-  </body>
+
+    <script src="/scriptingisJS/homeki.js"></script>
+</body>
+
 </html>
-
-
-

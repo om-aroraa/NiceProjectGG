@@ -98,6 +98,23 @@ app.get("/profile", (req, res) => {
   let username = req.cookies.user;
   if (!username) return res.redirect("/");
   db.query(
+    "SELECT imgpath, fullname FROM users WHERE username = ?",
+    [username],
+    (err, results) => {
+      if (err) throw err;
+      if (results.length === 0) return res.send("No user with that username");
+      let imgpath = results[0].imgpath;
+      let fullname = results[0].fullname;
+      if (!imgpath) imgpath = "/profilepics/default.png";
+      res.render("profile", { path: imgpath, username: username, fullname: fullname });
+    }
+  );
+});
+
+app.get("/home", (req, res) => {
+  let username = req.cookies.user;
+  if (!username) return res.redirect("/");
+  db.query(
     "SELECT imgpath FROM users WHERE username = ?",
     [username],
     (err, results) => {
@@ -105,7 +122,7 @@ app.get("/profile", (req, res) => {
       if (results.length === 0) return res.send("No user with that username");
       let imgpath = results[0].imgpath;
       if (!imgpath) imgpath = "/profilepics/default.png";
-      res.render("profile", { path: imgpath, username: username });
+      res.render("home", { path: imgpath, username: username });
     }
   );
 });

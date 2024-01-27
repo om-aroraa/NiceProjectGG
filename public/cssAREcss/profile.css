@@ -7,37 +7,18 @@ body {
     display: flex;
 }
 
-.sidebar {
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.left {
-    background-color: #ffffff;
-    width: 250px;
-    position: fixed;
-    height: 100%;
-    overflow-y: auto;
-}
-
-.content {
-    flex-grow: 1;
-    overflow: hidden;
-    padding: 20px;
-    margin-left: 250px;
-}
-
 .navbar {
     margin-left: 100px;
     background-color: #ffffff;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     position: relative;
     width: 75%;
     top: -20px;
+    left: -20px;
     z-index: 1;
 }
 
@@ -46,35 +27,17 @@ body {
     transition: color 0.3s ease;
     color: #333;
 }
-
-.nav-item:hover {
-    color: #3897f0;
-}
-
-.profile {
-    background-color: #3897f0;
-    color: #ffffff;
-    padding: 8px 15px;
-    border-radius: 20px;
-}
-
-.profile-section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 70px;
-    margin-bottom: 40px;
-}
-
-.user-details {
-    display: flex;
+.content {
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 20px;
+    margin-left: 250px;
 }
 
 #image-container {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 40px;
+    height: 40px;
     overflow: hidden;
     border: 2px solid #ddd;
     border-radius: 50%;
@@ -108,6 +71,62 @@ body {
 }
 
 #crop-preview::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-bottom: 40px;
+}
+
+.user-details {
+    display: flex;
+}
+
+#image-container1 {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+
+#profile-image1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#crop-preview1 {
+    position: absolute;
+    border: 2px solid #fff;
+    box-sizing: content-box;
+}
+
+#crop-preview1::before,
+#crop-preview1::after {
+    content: "";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#crop-preview1::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+}
+
+#crop-preview1::after {
     bottom: 0;
     left: 0;
     width: 100%;
@@ -177,3 +196,4 @@ body {
 }
 
 /* ... Rest of the CSS rules ... */
+
