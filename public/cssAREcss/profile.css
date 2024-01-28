@@ -84,6 +84,7 @@ body {
     margin-top: 20px;
     margin-left: 70px;
     margin-bottom: 40px;
+    width: 825px;
 }
 
 .user-details {
@@ -135,13 +136,17 @@ body {
 
 .user-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
 .username {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    flex-direction: column;
+    width: 300px;
 }
 
 .username h2 {
@@ -166,34 +171,44 @@ body {
     color: #3897f0;
 }
 
+.fullname{
+    position: relative;
+    left: 90px;
+    margin-top: 10px;
+}
 .stats {
+    position: relative;
     display: flex;
-    margin-bottom: 10px;
 }
 
-.stat {
-    margin-right: 20px;
+.stat1 {
+    margin-right: 150px;
 }
 
-.post-grid {
+.buttons{
+    position: relative;
+    left: 120px;
+    width: 80%;
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: row;
 }
 
-.post {
-    flex: 0 0 calc(33.33% - 20px);
-    height: 250px;
-    background-color: #333;
-    border-radius: 8px;
+#postbtn{
+    height: 50px;
+    width: 50%;
+    border: none;
 }
 
-.post img{
-        flex: 0 0 calc(33.33% - 20px);
-            height: 250px;
-            background-color: #333;
-            border-radius: 8px;
+#archivesbtn{
+    margin-left: 10px;
+    width: 50%;
+    border: none;
 }
 
-/* ... Rest of the CSS rules ... */
-
+.everything{
+    position: relative;
+    left: 70px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+}
