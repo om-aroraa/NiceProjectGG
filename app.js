@@ -35,25 +35,32 @@ app.get("/", (req, res) => {
   res.render("signup.ejs", { message: "" });
 });
 
+app.get("/logout", (req, res) => {
+  res.clearCookie("user");
+  res.redirect("/login");
+});
+
 app.get("/login", (req, res) => {
-  let username = req.cookies.username;
-  if (!username) return res.redirect("/");
-  db.query(
-    "SELECT imgpath FROM users WHERE username = ?",
-    [username],
-    (err, results) => {
-      if (err) throw err;
-      if (results.length === 0) return res.send("No user with that username");
-      let imgpath = results[0].imgpath;
-      if (!imgpath) imgpath = "/profilepics/default.png";
-      res.render("profile", { path: imgpath, username: username });
-    }
-  );
+  let username = req.cookies.user;
+  if (username) return res.redirect("/profile");
+  return res.render("login", { message: "" });
+});
+
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
+    if (err) throw err;
+    if (results.length === 0) return res.render('login', { message: 'Username does not exist!' });
+    if (results[0].password !== password) return res.render('login', { message: 'Password is incorrect!' });
+    res.cookie('user', username, { maxAge: 3600000 });
+    res.redirect('/profile');
+  });
 });
 
 app.post("/", (req, res) => {
-  const { fullname, username, email, password, confirmpassword, gender } = req.body;
-  let profile_pic
+  const { fullname, username, email, password, confirmpassword, gender } =
+    req.body;
+  let profile_pic;
   try {
     profile_pic = req.files.profilePicture || false;
   } catch (e) {
@@ -98,8 +105,8 @@ app.post("/", (req, res) => {
                     res.cookie("user", username, { maxAge: 3600000 });
                     res.redirect("/profile");
                   }
-                  );
-                } else {
+                );
+              } else {
                 res.cookie("user", username, { maxAge: 3600000 });
                 res.redirect("/profile");
               }
@@ -113,7 +120,7 @@ app.post("/", (req, res) => {
 
 app.get("/profile", (req, res) => {
   let username = req.cookies.user;
-  if (!username) return res.redirect("/");
+  if (!username) return res.redirect("/login");
   db.query(
     "SELECT imgpath, fullname FROM users WHERE username = ?",
     [username],
