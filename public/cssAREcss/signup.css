@@ -1,0 +1,529 @@
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            max-height: 100vh;
+
+        }
+
+        /* form {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+            max-height: 70vh;
+            max-width: 700px;
+            padding: 20px;
+            box-sizing: border-box;
+
+        } */
+
+        .form-box {
+            width: fit-content;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: transparent;
+            padding: 50px 60px 70px;
+            text-align: center;
+        }
+
+        .first-part {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            position: relative;
+
+        }
+
+        /* .formss {
+            z-index: 1;
+            position: absolute;
+            top: 4%;
+            left: 30%;
+
+        } */
+
+        .form-box h1 {
+            text-align: center;
+            font-size: 40px;
+            color: #ffffff;
+            border-bottom: 2px solid #606060;
+            display: inline-block;
+        }
+
+
+
+        label {
+            display: block; 
+            margin-bottom: 8px;
+            color: #ffffff;
+            position: relative;
+        }
+
+
+
+        /* #password:before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background: url('<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');
+        } */
+
+        input {
+            padding: 10px 30px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        select {
+            background-color: #000;
+            color: #fff;
+            padding: 8px;
+            border: 1px solid #fff;
+            outline: none;
+            font-size: 13.6px;
+        }
+
+        option {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .custom-file-input {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .input-hidden {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            /* Set font size as needed */
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        svg {
+            cursor: pointer;
+        }
+
+        /* button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        } */
+
+
+        .input-field {
+            background: #606060;
+            color: #ffffff;
+            border-radius: 20px;
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 50px;
+            transition: max-height 0.5 ease-in-out;
+            overflow: hidden;
+        }
+
+        input {
+            width: 100%;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: 0;
+            outline: 0;
+            padding: 30px 20px 20px 10px;
+            background: #393939;
+        }
+
+        .input-field i {
+            padding: 5px;
+            background: #606060;
+            color: #ffffff;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        form p {
+            color: #b4b4b4;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        form p a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+
+        .btn-field {
+            width: 48%;
+            background: #393939;
+            border: 0;
+            outline: 0;
+            color:rgb(255, 255, 255);
+            padding: 10px 0;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 1s;
+        }
+
+
+        .input-group {
+            height: 280px;
+            margin-right: 50px;
+
+        }
+
+        .btn-field button.disable {
+            background: #ff0000;
+            color: #caa4a4;
+        }
+
+
+
+
+        /* =============================================SVGS ARE HERE=========================================== */
+        /* =============================================SVGS ARE HERE=========================================== */
+        /* =============================================SVGS ARE HERE=========================================== */
+        /* =============================================SVGS ARE HERE=========================================== */
+
+        #bgsvgs {
+            z-index: -1;
+            position: relative;
+            height: 100vh;
+        }
+
+
+        #heart-eyes{
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            animation: heart-eyes 3s infinite;
+        }
+
+        #not-satisfied{
+            position: absolute;
+            bottom: 10%;
+            right: 45%;
+            animation: not-satisfied 3s infinite;
+        }
+
+        #laugh{
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            animation: laugh 3s infinite;
+        }
+
+        #blue-face{
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            animation: blue-face 3s infinite;
+        }   
+
+        #savage{
+            position: absolute;
+            top: 20%;
+            right: 30%;
+            animation: savage 3s infinite;
+        }
+
+        #sick{
+            position: absolute;
+            top: 50%;
+            left: 35%;
+            animation: sick 3s infinite;
+        }
+
+        #rainbow{
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            animation: rainbow 3s infinite;
+        }
+
+        #star-eyes{
+            position: absolute;
+            bottom: 17%;
+            left: 25%;
+            animation: star-eyes 3s infinite;
+        }
+
+        #goggles{
+            position: absolute;
+            bottom: 50%;
+            right: 50%;
+            animation: goggles 3s infinite;
+        }
+
+        #smile {
+            position: absolute;
+            top: 5%;
+            left: 10%;
+            animation: smile 3s infinite;
+        }
+
+        #devil {
+            position: absolute;
+            right: 30%;
+            left: 50%;
+            animation: devil 3s infinite;
+        }
+
+        #mute {
+            position: absolute;
+            bottom: 50%;
+            right: 8%;
+
+            animation: mute 3s infinite;
+        }
+
+        #uplook {
+            position: absolute;
+            bottom: 25%;
+            right: 26%;
+
+            animation: uplook 3s infinite;
+        }
+
+        #crosseye {
+            position: absolute;
+            top: 35%;
+            left: 15%;
+
+            animation: crosseye 3s infinite;
+        }
+
+        @keyframes smile {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, 20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes devil {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, 20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes mute {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, 20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes uplook {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, 20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes crosseye {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, 20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes heart-eyes {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes not-satisfied {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes laugh {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes blue-face {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes savage {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes sick {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes rainbow {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes star-eyes {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes goggles {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(0, -20px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
