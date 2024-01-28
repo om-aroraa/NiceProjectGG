@@ -511,12 +511,14 @@
     </div>
     <div class="form-box">
         <form action="#" method="post" enctype="multipart/form-data">
-            <% if (message) { %>
-                <%= message %>
-                    <% } %>
                         <h1 id="title">Sign Up</h1>
                         <div class="first-part">
                             <div class="input-group">
+                                <div id="errmessage">
+                                    <% if (message) { %>
+                                    <%= message %>
+                                    <% } %>
+                                </div>
                                 <div class="input-field">
                                     <i class="fa-solid fa-user"></i>
 
@@ -530,7 +532,8 @@
                                     <input type="text" id="username" name="username" placeholder="Enter Username"
                                         required>
                                 </div>
-
+                                <div>
+                                </div>
                                 <div class="input-field">
                                     <i class="fa-solid fa-at"></i>
 
@@ -539,14 +542,14 @@
                                 </div>
 
                                 <div class="input-field">
-                                    <i class="fa-regular fa-lock"></i>
+                                    <i class="fa-solid fa-lock"></i>
                                     <input type="password" id="password" name="password" placeholder="Enter password"
                                         required>
                                 </div>
 
                                 <div class="input-field">
                                     <i class="fa-solid fa-lock"></i>
-                                    <input type="password" id="confirmpassword" name="password"
+                                    <input type="password" id="confirmpassword" name="confirmpassword"
                                         placeholder="Confirm password" required>
                                 </div>
                             </div>
@@ -554,7 +557,7 @@
                                 <!-- <input id="nameField" type="file" id="profilePicture" name="profilePicture"
                                         accept="image/*" required> -->
                                 <div class="custom-file-input">
-                                    <input type="file" id="fileInput" name="fileInput" class="input-hidden">
+                                    <input type="file"  id="fileInput" name="profilePicture" class="input-hidden">
                                     <label for="fileInput">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -590,7 +593,27 @@
 
     </form>
     </div>
+    <script>
+        //check passwords
+        var password = document.getElementById("password")
+            , confirm_password = document.getElementById("confirmpassword");
 
-</body>
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            }
+            else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        confirm_password.onchange = validatePassword;
+
+        setTimeout(() => {
+            const myDiv = document.getElementById('errmessage');
+            myDiv.style.display = 'none'
+        }, 3000);
+    </script>
+    </body>
 
 </html>

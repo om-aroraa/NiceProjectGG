@@ -52,10 +52,22 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const { fullname, username, email, password, gender } = req.body;
-  let profile_pic = req.files.profilePicture;
-  let imgpath = "/profilepics/" + `${username}/` + profile_pic.name;
-  console.log(profile_pic);
+  const { fullname, username, email, password, confirmpassword, gender } = req.body;
+  let profile_pic
+  try {
+    profile_pic = req.files.profilePicture || false;
+  } catch (e) {
+    profile_pic = false;
+  }
+  let imgpath;
+  if (!profile_pic) {
+    imgpath = "/profilepics/default.png";
+  } else {
+    imgpath = "/profilepics/" + `${username}/` + profile_pic.name;
+  }
+  // check if passwords match
+  if (password !== confirmpassword)
+    return res.render("signup", { message: "Passwords do not match!" });
   // Check if username already exists
   db.query(
     "select * from users where username = ?",
@@ -78,14 +90,19 @@ app.post("/", (req, res) => {
             [fullname, username, email, password, gender, imgpath],
             (err, result) => {
               if (err) throw err;
-              profile_pic.mv(
-                `${__dirname}/public/profilepics/${username}/${profile_pic.name}`,
-                function (err) {
-                  if (err) return res.status(500).send(err);
-                  res.cookie("user", username, { maxAge: 3600000 });
-                  res.redirect("/profile");
-                }
-              );
+              if (profile_pic) {
+                profile_pic.mv(
+                  `${__dirname}/public/profilepics/${username}/${profile_pic.name}`,
+                  function (err) {
+                    if (err) return res.status(500).send(err);
+                    res.cookie("user", username, { maxAge: 3600000 });
+                    res.redirect("/profile");
+                  }
+                  );
+                } else {
+                res.cookie("user", username, { maxAge: 3600000 });
+                res.redirect("/profile");
+              }
             }
           );
         }
@@ -106,7 +123,11 @@ app.get("/profile", (req, res) => {
       let imgpath = results[0].imgpath;
       let fullname = results[0].fullname;
       if (!imgpath) imgpath = "/profilepics/default.png";
-      res.render("profile", { path: imgpath, username: username, fullname: fullname });
+      res.render("profile", {
+        path: imgpath,
+        username: username,
+        fullname: fullname,
+      });
     }
   );
 });
