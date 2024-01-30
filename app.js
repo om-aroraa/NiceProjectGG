@@ -41,8 +41,6 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  let username = req.cookies.user;
-  if (username) return res.redirect("/profile");
   return res.render("login", { message: "" });
 });
 
@@ -134,7 +132,24 @@ app.get("/profile", (req, res) => {
         path: imgpath,
         username: username,
         fullname: fullname,
+        results: false,
+        value: false,
       });
+    }
+    );
+  });
+  
+app.post("/profile", (req, res) => {
+  let username = req.cookies.user;
+  if (!username) return res.redirect("/");
+  const { value } = req.body;
+  if (value === "") return res.render("profile", { results: false, value: false });
+  db.query(
+    "SELECT username FROM users WHERE username LIKE ?",
+    [value + "%"],
+    (err, results) => {
+      if (err) throw err;
+      res.render("profile", { results: results, value: value });
     }
   );
 });
@@ -150,10 +165,26 @@ app.get("/home", (req, res) => {
       if (results.length === 0) return res.send("No user with that username");
       let imgpath = results[0].imgpath;
       if (!imgpath) imgpath = "/profilepics/default.png";
-      res.render("home", { path: imgpath, username: username });
+      res.render("home", { path: imgpath, username: username, results: false, value: false });
     }
   );
 });
+
+app.post("/home", (req, res) => {
+  let username = req.cookies.user;
+  if (!username) return res.redirect("/");
+  const { value } = req.body;
+  if (value === "") return res.render("home", { results: false, value: false });
+  db.query(
+    "SELECT username FROM users WHERE username LIKE ?",
+    [value + "%"],
+    (err, results) => {
+      if (err) throw err;
+      res.render("home", { results: results, value: value });
+    }
+  );
+});
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
