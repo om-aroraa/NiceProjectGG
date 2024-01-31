@@ -1,47 +1,93 @@
-body {
+body,
+html {
     margin: 0;
+    padding: 0;
     font-family: 'Arial', sans-serif;
+    background-color: #000000;
+    color: #fff;
 }
 
-.container {
+.slidin-logo {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    margin: 1%;
+}
+
+.nav-container {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .navbar {
-    margin-left: 100px;
-    background-color: #ffffff;
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #000000;
+    color: #fff;
+    padding: 0px 15px 0px 0px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
-    width: 75%;
-    top: -20px;
-    left: -20px;
-    z-index: 1;
 }
 
-.nav-item {
-    cursor: pointer;
-    transition: color 0.3s ease;
-    color: #333;
+
+.search-container {
+    position: relative;
+    max-width: 400px;
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
 }
-.content {
-    flex-grow: 1;
-    overflow: hidden;
-    padding: 20px;
-    margin-left: 250px;
+
+#search {
+    width: 100%;
+    padding: 8px;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #fff;
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    margin-right: 10px;
+    border: none;
+}
+
+::placeholder {
+    color: black;
+}
+
+
+.banner {
+    background-color: #323233;
+    height: 20vh;
+    width: 100%;
+
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icons i {
+    margin: 22px;
+    font-size: 25px;
+    cursor: pointer;
 }
 
 #image-container {
-    position: relative;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     overflow: hidden;
     border: 2px solid #ddd;
     border-radius: 50%;
-    margin-right: 50px;
+    
 }
 
 #profile-image {
@@ -51,7 +97,6 @@ body {
 }
 
 #crop-preview {
-    position: absolute;
     border: 2px solid #fff;
     box-sizing: content-box;
 }
@@ -59,7 +104,6 @@ body {
 #crop-preview::before,
 #crop-preview::after {
     content: "";
-    position: absolute;
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -77,138 +121,130 @@ body {
     height: 50px;
 }
 
-.profile-section {
+
+.profile-container {
+    background-color: #000000;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    margin-left: 70px;
-    margin-bottom: 40px;
-    width: 825px;
+    /* margin-top: 20px; */
+    padding: 150px;
+
 }
 
-.user-details {
-    display: flex;
-}
-
-#image-container1 {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    border: 2px solid #ddd;
+.profile-image {
+    position: absolute;
+    top: 20%;
+    background-color: #ccc;
     border-radius: 50%;
-    margin-right: 50px;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 10px;
 }
 
-#profile-image1 {
+.profile-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
 }
 
-#crop-preview1 {
+.profile-name {
     position: absolute;
-    border: 2px solid #fff;
-    box-sizing: content-box;
+    top: 45%;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #fff;
 }
 
-#crop-preview1::before,
-#crop-preview1::after {
-    content: "";
+.profile-bio {
     position: absolute;
-    background: rgba(0, 0, 0, 0.5);
+    top: 35%;
+    left: 8.5%;
+    text-align: left;
+    margin-bottom: 15px;
 }
-
-#crop-preview1::before {
-    top: 0;
-    left: 0;
+  
+.profile-stats {
+    display: flex;
+    position: absolute;
+    top: 40%;
+    right: 18%;
+    justify-content: space-evenly;
     width: 100%;
-    height: 50px;
+    max-width: 200px;
+    font-size: 19px;
 }
 
-#crop-preview1::after {
-    bottom: 0;
-    left: 0;
+.profile-stats div {
+    text-align: center;
+}
+
+.profile-stats span {
+    display: block;
+    font-size: 25px;
+    color: #fff;
+}
+
+
+.profile-actions {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+}
+
+.profile-actions button {
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 25px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+    margin: 0 10%;
+    
+}
+
+.post {
+    background-color: #d8dce6;
+    height: 50vh;
+    border-radius: 10px;
+}
+
+.post img {
     width: 100%;
-    height: 50px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-.user-info {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: space-between;
-    align-items: baseline;
-}
+/* Additional styles for better visual separation */
+/* .nav-container {
+            display: flex;
+        }
 
-.username {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-}
+        .nav-icons,
+        .search-container {
+            margin-right: 10px;
+        } */
 
-.username h2 {
-    margin-right: 10px;
-}
-
-.profile-buttons {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-}
-
-.edit-profile,
-.share-profile,
-.settings-icon {
-    margin-left: 10px;
-    text-decoration: none;
-    color: #333;
-}
-
-.settings-icon:hover {
-    color: #3897f0;
-}
-
-.fullname{
-    position: relative;
-    left: 90px;
-    margin-top: 10px;
-}
-.stats {
-    position: relative;
-    display: flex;
-}
-
-.stat1 {
-    margin-right: 150px;
-}
-
-.buttons{
-    position: relative;
-    left: 120px;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-}
-
-#postbtn{
-    height: 50px;
-    width: 50%;
-    border: none;
-}
-
-#archivesbtn{
-    margin-left: 10px;
-    width: 50%;
-    border: none;
-}
-
-.everything{
-    position: relative;
-    left: 70px;
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-}
+/* .sidebar {
+            background-color: #333;
+            width: 60px;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        } */

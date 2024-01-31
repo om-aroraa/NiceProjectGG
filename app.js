@@ -143,13 +143,15 @@ app.post("/profile", (req, res) => {
   let username = req.cookies.user;
   if (!username) return res.redirect("/");
   const { value } = req.body;
-  if (value === "") return res.render("profile", { results: false, value: false });
+  let imgpath
+  if (!imgpath) imgpath = "/profilepics/default.png";
+  if (value === "") return res.render("profile", {path:imgpath, username:username, results: false, value: false });
   db.query(
     "SELECT username FROM users WHERE username LIKE ?",
     [value + "%"],
     (err, results) => {
       if (err) throw err;
-      res.render("profile", { results: results, value: value });
+      res.render("profile", { path:imgpath, username:username, results: results, value: value });
     }
   );
 });
