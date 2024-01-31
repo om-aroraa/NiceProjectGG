@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile UI</title>
     <script src="https://kit.fontawesome.com/1144a62fa6.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/cssAREcss/mansi-profile.css">
+    <link rel="stylesheet" href="/cssAREcss/home.css">
 </head>
 
 <body>
@@ -42,8 +42,13 @@
                 <i class="fa-solid fa-circle-plus"></i>
                 <i class="fa-solid fa-heart"></i>
                 <i class="fa-solid fa-comment"></i>
-                <i class="fa-solid fa-circle-user"></i>
-                <!-- <i class="fa-solid fa-caret-down"></i> -->
+                <i><div id="image-container">
+                    <img id="profile-image" src="<%=path %>" alt="" srcset="" />
+                    <div id="crop-preview"></div>
+                    </div>
+                    <div class="nav-item profile">
+                  </div>
+                </i>
                 <i class="fa-solid fa-gear"></i>
                 </div>
             </div>
