@@ -15,25 +15,13 @@
         <!-- <div class="slidin-logo"><img src="/homeimages/cubes.webp" alt=""></div> -->
         <div class="nav-container">
             <div class="nav-icons">
-                <i class="fa-solid fa-house-chimney" style="color: #fff;"></i>
-                <div class="search-container">
+                <a href="/home"><i class="fa-solid fa-house-chimney" style="color: #fff;"></i></a>
+            <div class="search-container">
         <form action="/profile
         " method="post" enctype="multipart/form-data" id="searchForm">
             <input type="text" id="search" placeholder="Search.." name="value" oninput="submitForm()" <% if (value) { %> value="<%= value %>" <% } %>>
         </form>
-            <% if (results) { %>
-        <div class="search-results">
-            <% results.forEach(function(result) { %>
-                <div class="search-result">
-                    <a href="/profile/<%= result.username %>">
-                        <img src="/uploads/<%= result.profilePic %>" alt="Profile Pic">
-                        <span><%= result.username %></span>
-                      </a>
-                    </div>
-                  <% }) %>
-                </div>
-              <% } %>
-            </div>
+        </div>
         </div>
             <div class="nav-icons">
                 <i class="fa-solid fa-circle-plus"></i>
@@ -46,9 +34,32 @@
                     <div class="nav-item profile">
                   </div>
                 </i>
-                <i class="fa-solid fa-gear"></i>
+                <i id="setting" onclick="rotate()" class="fa-solid fa-gear"></i>
             </div>
         </div>
+    </div>
+    <div>
+        <ul>
+            <% if (results) { %>
+                <% results.forEach(function(result) { %>
+                    <li>
+                        <div class="card">
+                            <a href="/profilepics/<%= result.username %>">
+                                <div class="card_load">
+                                    <img src="/uploads/<%= result.profilePic %>" alt="Profile Pic">
+                                </div>
+                                <div class="card_load_extreme_title">   
+                                    <span><%= result.username %></span>
+                                </div>
+                    </a>
+                    <div class="card_load_extreme_descripion">
+                        <button>Add Friend</button>
+                    </div>
+                </div>
+            </li>
+            <% }) %>
+            <% } %>            
+        </ul>
     </div>
     <div class="banner"><img src="/homeimages/cubes.webp" alt=""></div>
     <div class="profile-container">
@@ -76,7 +87,6 @@
             <button>View Archive</button>
         </div>
     </div>
-
     <div class="post-grid">
         <!-- Post placeholders -->
         <div class="post"><img
@@ -101,6 +111,11 @@
             var val = input.value; 
             input.value = '';
             input.value = val;   
+        }
+        function rotate() {
+            let setting = document.getElementById("setting")
+            setting.style.transform = "rotate(360deg)"
+            setting.style.transition = "all 1s ease-in-out"
         }
     </script>
 </body>
