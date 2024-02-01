@@ -30,12 +30,13 @@
                 <i class="fa-solid fa-circle-plus"></i>
                 <i class="fa-solid fa-heart"></i>
                 <i class="fa-solid fa-comment"></i>
-                <i><div id="image-container">
-                    <img id="profile-image" src="<%=path %>" alt="" srcset="" />
-                    <div id="crop-preview"></div>
-                    </div>
-                    <div class="nav-item profile">
-                  </div>
+                <i>
+                    <a href="/profile">
+                        <div id="image-container">
+                            <img id="profile-image" src="<%=path %>" alt="" srcset="" />
+                            <div id="crop-preview"></div>
+                        </div>
+                    </a>
                 </i>
                 <i id="setting" onclick="rotate()" class="fa-solid fa-gear"></i>
             </div>
@@ -69,6 +70,7 @@
         function submitForm() {
             document.getElementById("searchForm").submit();
         }
+        
         let backend = "<%= value %>"
         if (backend !== "false") {
             let input = document.getElementById("search")
@@ -76,6 +78,12 @@
             var val = input.value; //store the value of the element
             input.value = ''; //clear the value of the element
             input.value = val; //set that value back.  
+        }
+
+        function rotate() {
+            let setting = document.getElementById("setting")
+            setting.style.transform = "rotate(360deg)"
+            setting.style.transition = "all 1s ease-in-out"
         }
     </script>
 </body>
