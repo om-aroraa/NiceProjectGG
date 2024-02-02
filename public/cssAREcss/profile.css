@@ -249,6 +249,7 @@ html {
             left: 0;
         } */
 
+<<<<<<< Updated upstream
 .card {
   position: absolute;
   width: 220px;
@@ -314,3 +315,20 @@ li{
     padding: 31px;
     cursor: pointer;
 }
+=======
+
+ #settings-gear {
+     background: none;
+     border: none;
+     padding: 0;
+     cursor: pointer;
+     outline: none;
+     color: inherit;
+ }
+
+ .content hr{
+        border: 1px solid #5b5b5b;
+        width: 70%;
+        margin: 0 auto;
+ }
+>>>>>>> Stashed changes

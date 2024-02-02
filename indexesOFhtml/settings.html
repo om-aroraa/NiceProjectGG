@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/1144a62fa6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/public/cssAREcss/settings.css">
+    <link rel="stylesheet" href="/public/cssAREcss/settings2.css">
+    <link rel="stylesheet" href="/public/cssAREcss/profile.css">
+    <link rel="stylesheet" href="/public/cssAREcss/home.css">
+    <title>Your Sidebar Example</title>
+</head>
+
+<body>
+        <div class="navbar">
+            <div class="slidin-logo">Slidin'</div>
+            <!-- <div class="slidin-logo"><img src="/homeimages/cubes.webp" alt=""></div> -->
+            <div class="nav-container">
+                <div class="nav-icons">
+                    <i class="fa-solid fa-house-chimney" style="color: #fff;"></i>
+                    <div class="search-container">
+                        </div>
+                </div>
+                <div class="nav-icons">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-comment"></i>
+                    <i>
+                        <div id="image-container">
+                            <img id="profile-image" src="<%=path %>" alt="" srcset="" />
+                            <div id="crop-preview"></div>
+                        </div>
+                        <div class="nav-item profile">
+                        </div>
+                    </i>
+                    <div class="popup" id="popup-1">
+                        <div class="overlay"></div>
+                        <div class="content">
+        
+                            <a href="#">
+                                <p>share your ID</p>
+                            </a>
+                            <hr>
+                            <a href="#">
+                                <p>Privacy and Settings</p>
+                            </a>
+                            <hr>
+                            <a href="#">
+                                <p>Logout</p>
+                            </a>
+                            <hr>
+                            <p onclick="togglePopup()">Cancel</p>
+                            <hr>
+                        </div>
+                    </div>
+        
+                        <button id="settings-gear" onclick="togglePopup()"><i class="fa-solid fa-gear"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container-settings">
+        <div class="sidebar">
+            
+            <h2>Main Menu</h2>
+            <ul>
+                <li><a href="#editProfile">Edit Profile</a></li>
+                <li><a href="#blockAccounts">Block Accounts</a></li>
+                <li><a href="#changePassword">Change Password</a></li>
+                <li><a href="#dataPrivacy">Data and Privacy</a></li>
+                <li><a href="#themeAppearance">Theme and Appearance</a></li>
+                <li><a href="#legalCompliance">Legal and Compliance</a></li>
+                <li><a href="#logoutDeactivation">Logout/Account Deactivation</a></li>
+            </ul>
+        </div>
+
+        <!-- Content area -->
+        <div class="content">
+            <h2>Edit Profile</h2>
+            <p>Content for Edit Profile goes here...</p>
+        </div>
+    </div>
+
+    <!-- Sub-sidebar -->
+    <div class="sub-sidebar">
+        <h2>Legal and Compliance</h2>
+        <ul>
+            <li><a href="#termsOfService">Terms of Service</a></li>
+            <li><a href="#privacyPolicy">Privacy Policy</a></li>
+            <li><a href="#complianceInfo">Compliance and Data Usage Information</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>
