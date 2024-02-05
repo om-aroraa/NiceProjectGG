@@ -7,8 +7,6 @@
     <title>Profile UI</title>
     <script src="https://kit.fontawesome.com/1144a62fa6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/cssAREcss/profile.css">
-    <link rel="stylesheet" href="/cssAREcss/settings.css">
-
 </head>
 
 <body>
@@ -17,7 +15,6 @@
         <!-- <div class="slidin-logo"><img src="/homeimages/cubes.webp" alt=""></div> -->
         <div class="nav-container">
             <div class="nav-icons">
-<<<<<<< Updated upstream
                 <a href="/home"><i class="fa-solid fa-house-chimney" style="color: #fff;"></i></a>
             <div class="search-container">
         <form action="/profile
@@ -26,72 +23,18 @@
         </form>
         </div>
         </div>
-=======
-                <i class="fa-solid fa-house-chimney" style="color: #fff;"></i>
-                <div class="search-container">
-                    <form action="/profile
-        " method="post" enctype="multipart/form-data" id="searchForm">
-                        <input type="text" id="search" placeholder="&#xF002;   Search Friends"
-                            style="font-family:Arial, FontAwesome" ; name="value" oninput="submitForm()" <% if (value) {
-                            %> value="<%= value %>" <% } %>>
-                    </form>
-                    <% if (results) { %>
-                        <div class="search-results">
-                            <% results.forEach(function(result) { %>
-                                <div class="search-result">
-                                    <a href="/profile/<%= result.username %>">
-                                        <img src="/uploads/<%= result.profilePic %>" alt="Profile Pic">
-                                        <span>
-                                            <%= result.username %>
-                                        </span>
-                                    </a>
-                                </div>
-                                <% }) %>
-                        </div>
-                        <% } %>
-                </div>
-            </div>
->>>>>>> Stashed changes
             <div class="nav-icons">
                 <i class="fa-solid fa-circle-plus"></i>
                 <i class="fa-solid fa-heart"></i>
                 <i class="fa-solid fa-comment"></i>
-                <i>
-                    <div id="image-container">
-                        <img id="profile-image" src="<%=path %>" alt="" srcset="" />
-                        <div id="crop-preview"></div>
+                <i><div id="image-container">
+                    <img id="profile-image" src="<%=path %>" alt="" srcset="" />
+                    <div id="crop-preview"></div>
                     </div>
                     <div class="nav-item profile">
-                    </div>
+                  </div>
                 </i>
-<<<<<<< Updated upstream
                 <i id="setting" onclick="rotate()" class="fa-solid fa-gear"></i>
-=======
-                <div class="popup" id="popup-1">
-                    <div class="overlay"></div>
-                    <div class="content">
-
-                        <a href="#">
-                            <p>share your ID</p>
-                        </a>
-                        <hr>
-                        <a href="#">
-                            <p>Privacy and Settings</p>
-                        </a>
-                        <hr>
-                        <a href="#">
-                            <p>Logout</p>
-                        </a>
-                        <hr>
-                        <p onclick="togglePopup()">Cancel</p>
-                        <hr>
-                    </div>
-                </div>
-
-
-                <button id="settings-gear" onclick="togglePopup()"><i class="fa-solid fa-gear"></i></button>
-
->>>>>>> Stashed changes
             </div>
         </div>
     </div>
@@ -121,11 +64,10 @@
     <div class="banner"><img src="/homeimages/cubes.webp" alt=""></div>
     <div class="profile-container">
         <div class="profile-image">
-            <img src="<%=path %>" alt="">
+            <img src="<%=path %>"
+                alt="">
         </div>
-        <div class="profile-name">
-            <%=username %>
-        </div>
+        <div class="profile-name"><%=username %></div>
         <div class="profile-bio">
             <p>Bio</p>
             <p>It's just a cigarette and it harms your pretty lungs</p>
@@ -158,39 +100,23 @@
                 alt=""></div>
 
     </div>
-    <script type="text/javascript">
+     <script type="text/javascript">
         function submitForm() {
             document.getElementById("searchForm").submit();
         }
         let backend = "<%= value %>"
         if (backend !== "false") {
             let input = document.getElementById("search")
-            input.focus();
-            var val = input.value;
+            input.focus();   
+            var val = input.value; 
             input.value = '';
-            input.value = val;
+            input.value = val;   
         }
-<<<<<<< Updated upstream
         function rotate() {
             let setting = document.getElementById("setting")
             setting.style.transform = "rotate(360deg)"
             setting.style.transition = "all 1s ease-in-out"
         }
-=======
-
-        // rotate settings icon 360 degrees on click
-        let settings = document.getElementById("settings")
-        function roodee() {
-            // rotate 360 degrees on click with transition
-            settings.style.transform = "rotate(360deg)"
-            settings.style.transition = "all ease-in-out 0.51s"
-        }
-
-        function togglePopup() {
-            document.getElementById("popup-1").classList.toggle("active");
-        }
-
->>>>>>> Stashed changes
     </script>
 </body>
 
