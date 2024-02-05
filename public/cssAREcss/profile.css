@@ -40,16 +40,16 @@ html {
 
 #search {
     width: 100%;
-    padding: 8px;
+    padding: 8px 14px;
     /* border: 1px solid #ccc; */
-    border-radius: 5px;
+    border-radius: 8px;
     box-sizing: border-box;
-    cursor: pointer;
     color: #fff;
     background-color: #fff;
     color: rgb(0, 0, 0);
     margin-right: 10px;
     border: none;
+    font-size: 16px;
 }
 
 ::placeholder {
@@ -87,7 +87,7 @@ html {
     overflow: hidden;
     border: 2px solid #ddd;
     border-radius: 50%;
-    
+
 }
 
 #profile-image {
@@ -165,7 +165,7 @@ html {
     text-align: left;
     margin-bottom: 15px;
 }
-  
+
 .profile-stats {
     display: flex;
     position: absolute;
@@ -214,7 +214,7 @@ html {
     grid-gap: 20px;
     padding: 20px;
     margin: 0 10%;
-    
+
 }
 
 .post {
@@ -251,20 +251,20 @@ html {
 
 
 .card {
-  position: absolute;
-  width: 220px;
-  height: 50px;
-  background: #ffff;
-  box-shadow: 0 1px 25px rgba(0,0,0,0.2);
-  position: absolute;
-  transform: translate(35%, -58%);
-  padding: 5px 10px;
-  z-index: 1;
+    position: absolute;
+    width: 220px;
+    height: 50px;
+    background: #ffff;
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    transform: translate(35%, -58%);
+    padding: 5px 10px;
+    z-index: 1;
 
 }
 
 .card_load {
-      width: 50px;
+    width: 50px;
     height: 50px;
     position: relative;
     float: left;
@@ -276,7 +276,7 @@ html {
 }
 
 .card_load_extreme_title {
-     width: 117px;
+    width: 117px;
     height: 17px;
     position: relative;
     float: right;
@@ -302,64 +302,78 @@ html {
 }
 
 @keyframes load89234 {
-  100% {
-    background-position: -100% 0;
-  }
+    100% {
+        background-position: -100% 0;
+    }
 }
 
-ul{
+ul {
     list-style-type: none;
     position: absolute;
     z-index: 1;
 }
 
-li{
+li {
     padding: 31px;
     cursor: pointer;
 }
-.popup .overlay {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.716)    ;
-    z-index: 1;
-    display: none;
-}
-
-.popup .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%) scale(0);
-    background: #000000;
-    width: 95%;
-    max-width: 500px;
-    height: fit-content;
-    z-index: 2;
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
-    border-radius: 10px;
-}
 
 
-.popup .close-btn {
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 30px;
-    height: 30px;
-    background: red;
-    color: #fff;
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 30px;
-    text-align: center;
-    border-radius: 50%;
+
+
+/* ====================== settings ki css ========================== */
+
+
+
+
+
+.popup {
+    .overlay {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100lvw;
+        height: 100lvh;
+        background: rgba(0, 0, 0, 0.751);
+
+        z-index: 1;
+        display: none;
+    }
+
+    .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: #00000099;
+        width: 95%;
+        max-width: 500px;
+        height: fit-content;
+        z-index: 2;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        font-family: "Open Sans", sans-serif;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .close-btn {
+       cursor: pointer;
+       position: absolute;
+       right: 20px;
+       top: 20px;
+       width: 30px;
+       height: 30px;
+       background: red;
+       color: #fff;
+       font-size: 25px;
+       font-weight: 600;
+       line-height: 30px;
+       text-align: center;
+       border-radius: 50%;
+   }
 }
 
 .popup.active .overlay {
@@ -368,18 +382,20 @@ li{
 
 .popup.active .content {
     transition: all 300ms ease-in-out;
-    transform: translate(-50%,-50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .content p {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 500;
     cursor: pointer;
     color: #fff;
-    
+    padding-bottom: 10px;
+    border-bottom: #ff0000 1px solid;
+    width: 400px;
 }
 
-.content  a {
+.content a {
     color: #fff;
     text-decoration: none;
 }
