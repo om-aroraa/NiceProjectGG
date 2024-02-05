@@ -309,6 +309,8 @@ html {
 
 ul{
     list-style-type: none;
+    position: absolute;
+    z-index: 1;
 }
 
 li{
