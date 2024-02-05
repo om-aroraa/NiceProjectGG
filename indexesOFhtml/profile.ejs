@@ -34,7 +34,27 @@
                     <div class="nav-item profile">
                   </div>
                 </i>
-                <i id="setting" onclick="rotate()" class="fa-solid fa-gear"></i>
+                <button type="button"><i id="setting" onclick="rotate()" class="fa-solid fa-gear"></i></button>
+                <div class="popup" id="popup-1">
+                    <div id="overlay">    
+                        <div class="content">
+                            <a href="#">
+                                <p>share your ID</p>
+                            </a>
+                            <hr>
+                            <a href="#">
+                                <p>Privacy and Settings</p>
+                            </a>
+                            <hr>
+                            <a href="#">
+                                <p>Logout</p>
+                            </a>
+                            <hr>
+                            <p onclick="togglePopup()">Cancel</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -117,7 +137,9 @@
             setting.style.transform = "rotate(360deg)"
             setting.style.transition = "all 1s ease-in-out"
         }
-    </script>
+
+
+    </script>    
 </body>
 
 </html>
