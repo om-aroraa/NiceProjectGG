@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Chat</title>
+</head>
+
+
+
+
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+            }
+        
+            .chat-container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                box-sizing: border-box;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin-top: 50px;
+
+            }
+        
+            .message {
+                display: flex;
+                margin-bottom: 16px;
+                max-width: 80%;
+                                flex-direction: column;
+
+            }
+        
+            .message .avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #4CAF50;
+                margin-right: 10px;
+                overflow: hidden;
+            }
+        
+            .message .avatar img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        
+            .message .message-bubble {
+                background-color: #4CAF50;
+                color: #fff;
+                padding: 10px;
+                border-radius: 10px;
+                word-wrap: break-word;
+            }
+        
+            .message .message-info {
+                font-size: 12px;
+                margin-top: 5px;
+                color: #888;
+            }
+        
+            .input-container {
+                display: flex;
+                margin-top: 20px;
+            }
+        
+            .input-container input {
+                flex: 1;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                font-size: 14px;
+            }
+        
+            .input-container button {
+                background-color: #4CAF50;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 10px;
+                margin-left: 10px;
+                cursor: pointer;
+                outline: none;
+                font-size: 14px;
+            }
+        </style>
+        </head>
+
+        <body>
+        
+            <div class="chat-container">
+                <div class="message" id="messages">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    </div>
+                    <div class="message-bubble">
+                        Hello! This is a sample message.
+                        <div class="message-info">12:34 PM</div>
+                    </div>
+                </div>
+        
+                <!-- More messages go here --><ul id="messages"></ul>
+                <form id="form" action="">
+                    <input id="m" autocomplete="off" /><button>Send</button>
+                </form>
+        
+                <div class="input-container">
+                    <input type="text" placeholder="Type your message...">
+                    <button><i class="fas fa-paper-plane"></i>Send</button>
+                </div>
+            </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const yourId = '<%= username %>';
+            const socket = io();
+
+            // Load chat history
+            socket.on('loadHistory', function (history) {
+                history.forEach(function (i) {
+                    let msg_div = document.getElementById('messages')
+                    // Create new div element
+                    let newDiv = document.createElement("div")
+                    newDiv.classList.add("avatar");
+                    // Create new img element
+                    let newImg = document.createElement("img")
+                    newImg.src = "<% i.profile %>";
+                    newImg.alt = "User Avatar";
+                    // Append the new img element to the new div element
+                    newDiv.appendChild(newImg);
+                    // Create new message-bubble div element
+                    let newMessageBubble = document.createElement("div")
+                    newMessageBubble.classList.add("message-bubble");
+                    newMessageBubble.textContent = i.message;
+                    // Append the new message-info div element to the new div element
+                    let newMessageInfo = document.createElement("div")
+                    newMessageInfo.classList.add("message-info");
+                    newMessageInfo.textContent = i.time;
+                    newMessageBubble.appendChild(newMessageInfo);
+                    // Append the new div element to the messages div
+                    msg_div.appendChild(newDiv);
+                    // Append the new message-bubble div element to the new div element
+                    msg_div.appendChild(newMessageBubble);
+                });
+            });
+
+            // Send message
+            document.getElementById('form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const message = document.getElementById('m').value;
+                socket.emit('chat message', yourId + ": " + message);
+                document.getElementById('m').value = '';
+            });
+
+            // Receive and display message
+            socket.on('chat message', function (msg) {
+                let msg_div = document.getElementById('messages')
+                // Create new div element
+                let newDiv = document.createElement("div")
+                newDiv.classList.add("avatar");
+                // Create new img element
+                let newImg = document.createElement("img")
+                newImg.src = "<% i.profile %>";
+                newImg.alt = "User Avatar";
+                // Append the new img element to the new div element
+                newDiv.appendChild(newImg);
+                // Create new message-bubble div element
+                let newMessageBubble = document.createElement("div")
+                newMessageBubble.classList.add("message-bubble");
+                newMessageBubble.textContent = msg;
+                // Append the new message-info div element to the new div element
+                let newMessageInfo = document.createElement("div")
+                newMessageInfo.classList.add("message-info");
+                let time = new Date();
+                let ampm = time.getHours() >= 12 ? 'PM' : 'AM';
+                let hours = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
+                let formattedTime = `${hours}:${time.getMinutes()} ${ampm}`;
+                newMessageInfo.textContent = formattedTime;
+                newMessageBubble.appendChild(newMessageInfo);
+                // Append the new div element to the messages div
+                msg_div.appendChild(newDiv);
+                // Append the new message-bubble div element to the new div element
+                msg_div.appendChild(newMessageBubble);
+            });
+
+            // Update chat history cookie on the client side
+            socket.on('updateHistoryCookie', function (updatedChatsCookie) {
+                document.cookie = 'savedChats=' + updatedChatsCookie;
+            });
+
+            // Helper function to create a new list item element
+            function createListItem(text) {
+                const li = document.createElement('li');
+                li.textContent = text;
+                return li;
+            }
+        });
+
+    </script>
+</body>
+
+</html>

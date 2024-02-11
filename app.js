@@ -4,13 +4,17 @@ const mysql = require("mysql2");
 const fileUpload = require("express-fileupload");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const http = require("http");
+const socketIO = require("socket.io");
 const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 const port = 3000;
 
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "14351435",
   database: "slidin",
 });
 
@@ -189,7 +193,55 @@ app.post("/home", (req, res) => {
   );
 });
 
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.get("/chat", (req, res) => {
+  res.sendFile(path.join(__dirname, "indexesOfhtml", "chat.html"));
 });
+
+// render chat page
+app.get('/chat', (req, res) => {
+  res.render('chat');
+});
+
+
+server.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+// Initialize chat data
+const chatData = [];
+
+// Socket.IO connection
+io.on('connection', (socket) => {
+
+  // Load chat history from cookies
+  const savedChats = socket.handshake.headers.cookie; // Access cookies from handshake
+  if (savedChats) {
+    const parsedCookies = require('cookie').parse(savedChats);
+    const chatHistoryCookie = parsedCookies.savedChats;
+    if (chatHistoryCookie) {
+      const chatHistory = JSON.parse(chatHistoryCookie);
+      socket.emit('loadHistory', chatHistory);
+    }
+  }
+
+   // Receive and broadcast messages
+  socket.on('chat message', (msg) => {
+    let date = new Date();
+    let ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+    let hours = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
+    let formattedTime = `${hours}:${date.getMinutes()} ${ampm}`
+    chatData.push({ proflie: "/profilepics/default.png", message: msg, time: formattedTime });
+    io.emit('chat message', msg);
+
+    // Save chat history to cookies
+    const updatedChatsCookie = JSON.stringify(chatData);
+    socket.emit('updateHistoryCookie', updatedChatsCookie);
+  });
+
+  // Handle disconnection
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+});
+
+

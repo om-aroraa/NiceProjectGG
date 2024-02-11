@@ -10,54 +10,7 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="slidin-logo">Slidin'</div>
-        <!-- <div class="slidin-logo"><img src="/homeimages/cubes.webp" alt=""></div> -->
-        <div class="nav-container">
-            <div class="nav-icons">
-                <a href="/home"><i class="fa-solid fa-house-chimney" style="color: #fff;"></i></a>
-                <div class="search-container">
-                    <form action="/profile
-        " method="post" enctype="multipart/form-data" id="searchForm">
-                        <input type="text" id="search" placeholder="&#xF002;  Search"
-                            style="font-family:Arial, FontAwesome" name="value" oninput="submitForm()" <% if (value) {
-                            %> value="<%= value %>" <% } %>>
-                    </form>
-                </div>
-            </div>
-            <div class="nav-icons">
-                <i class="fa-solid fa-circle-plus"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-comment"></i>
-                <i>
-                    <div id="image-container">
-                        <img id="profile-image" src="<%=path %>" alt="" srcset="" />
-                        <div id="crop-preview"></div>
-                    </div>
-                    <div class="nav-item profile">
-                    </div>
-                </i>
-                <i id="setting" onclick="togglePopup()" class="fa-solid fa-gear"></i>
-                <div class="popup" id="popup-1">
-                    <div class="overlay">
-                        <div class="content">
-                            <div class="close-btn" onclick="togglePopup()">&times;</div>
-                            <a href="#">
-                                <p>Share your ID</p>
-                            </a>
-                            <a href="#">
-                                <p>Privacy and Settings</p>
-                            </a>
-                            <a href="#">
-                                <p>Logout</p>
-                            </a>
-                            <p onclick="togglePopup()">Cancel</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<%- include('navbar.ejs') -%>
     <div>
         <ul>
             <% if (results) { %>

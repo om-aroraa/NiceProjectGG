@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slidin Chat</title>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/cssAREcss/profile.css">
+    <link rel="stylesheet" href="/public/cssAREcss/chat.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="slidin-logo">Slidin'</div>
+        <!-- <div class="slidin-logo"><img src="/homeimages/cubes.webp" alt=""></div> -->
+        <div class="nav-container">
+            <div class="nav-icons">
+                <a href="/home"><i class="fa-solid fa-house-chimney" style="color: #fff;"></i></a>
+                <div class="search-container">
+
+                    <input type="text" id="search" placeholder="&#xF002;  Search" style="font-family:Arial, FontAwesome"
+                        name="value">
+                </div>
+            </div>
+            <div class="nav-icons">
+                <i class="fa-solid fa-circle-plus"></i>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-comment"></i>
+                <i>
+                    <div id="image-container">
+                        <img id="profile-image" src="<%=path %>" alt="" srcset="" />
+                        <div id="crop-preview"></div>
+                    </div>
+                    <div class="nav-item profile">
+                    </div>
+                </i>
+                <i id="setting" onclick="togglePopup()" class="fa-solid fa-gear"></i>
+                <div class="popup" id="popup-1">
+                    <div class="overlay">
+                        <div class="content">
+                            <div class="close-btn" onclick="togglePopup()">&times;</div>
+                            <a href="#">
+                                <p>Share your ID</p>
+                            </a>
+                            <a href="#">
+                                <p>Privacy and Settings</p>
+                            </a>
+                            <a href="#">
+                                <p>Logout</p>
+                            </a>
+                            <p onclick="togglePopup()">Cancel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chat-body">
+        <div class="sidebar">
+            <h2>Chats</h2>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search">
+            </div>
+            <div class="friends-chat">
+
+                <div class="single-chat">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    </div>
+                    <div class="friend-info">
+                        <div class="name">Friend's Name</div>
+                        <div class="recent-message">Hello! This is a sample message.</div>
+                    </div>
+                    <div class="message-time">12:34 PM</div>
+                </div>
+                <div class="single-chat">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    </div>
+                    <div class="friend-info">
+                        <div class="name">Friend's Name</div>
+                        <div class="recent-message">Hello! This is a sample message.</div>
+                    </div>
+                    <div class="message-time">12:34 PM</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat-container">
+            <div class="header">
+                <div>Friend's Name</div>
+                <div>Online</div>
+            </div>
+
+            <div class="message-container">
+                <div class="message sender">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    </div>
+                    <div class="message-bubble">
+
+                        <div class="message-info">12:35 PM</div>
+                    </div>
+
+                </div>
+
+                <div class="message receiver">
+                    <div class="message-bubble">
+
+                        <div class="message-info">12:36 PM</div>
+                    </div>
+                </div>
+
+                <!-- More messages go here -->
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="input-container">
+        <button id="upload-button"><i class="fa-solid fa-images"></i></button>
+        <button id="emoji-button"><i class="fa-regular fa-face-smile"></i></button>
+        <div class="emoji-picker" id="emoji-picker">
+            <div class="emoji-categories">
+                <div class="category">
+                    <h2>Smileys & Emotion</h2>
+                    <div class="emojis">
+                        <!-- Example emojis -->
+                        <span class="emoji">😊</span>
+                        <span class="emoji">😂</span>
+                        <!-- Add more emojis here -->
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Animals & Nature</h2>
+                    <div class="emojis">
+                        <!-- Example emojis -->
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <!-- Add more emojis here -->
+                    </div>
+                </div>
+                <!-- Add more categories as needed -->
+            </div>
+            
+        </div>
+        <input type="text" id="message-input" placeholder="Start Slidin...">
+        <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+        <input type="file" id="file-input" style="display: none;"> <!-- Hidden file input -->
+    </div>
+
+
+
+
+
+
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/scriptingisJS/chat.js"></script>
+
+    <script>
+       
+    // Toggle emoji picker visibility
+    document.getElementById('emoji-button').addEventListener('click', function (event) {
+        event.stopPropagation(); // Prevent the click event from bubbling up to the document body
+        const emojiPicker = document.getElementById('emoji-picker');
+        emojiPicker.style.display = emojiPicker.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Handle emoji selection
+    document.querySelectorAll('.emoji').forEach(function (emoji) {
+        emoji.addEventListener('click', function () {
+            const selectedEmoji = this.textContent;
+            const messageInput = document.getElementById('message-input');
+            messageInput.value += selectedEmoji; // Append selected emoji to the input text
+        });
+    });
+
+    // Close emoji picker when clicking outside
+    document.body.addEventListener('click', function (event) {
+        const emojiPicker = document.getElementById('emoji-picker');
+        const emojiButton = document.getElementById('emoji-button');
+
+        // Check if the click event originated from within the emoji picker or the emoji button
+        if (!emojiPicker.contains(event.target) && event.target !== emojiButton) {
+            emojiPicker.style.display = 'none'; // Close the emoji picker
+        }
+    });
+
+
+
+
+    </script>
+</body>
+
+</html>
