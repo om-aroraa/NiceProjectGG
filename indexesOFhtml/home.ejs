@@ -10,10 +10,39 @@
 </head>
 
 <body>
-
+<div class="navbar">
+    <div class="slidin-logo">Slidin'</div>
+    <!-- <div class="slidin-logo"><img src="/homeimages/cubes.webp" alt=""></div> -->
+    <div class="nav-container">
+        <div class="nav-icons">
+            <a href="/home"><i class="fa-solid fa-house-chimney" style="color: #fff;"></i></a>
+            <div class="search-container">
+                <form action="/profile" method="post" enctype="multipart/form-data" id="searchForm">
+                    <input type="text" id="search" placeholder="&#x1F50E;&#xFE0E; Search.." name="value"
+                        oninput="submitForm()" <% if (value) { %>
+                    value="<%= value %>"
+                        <% } %>>
+                </form>
+            </div>
+        </div>
+        <div class="nav-icons">
+            <i class="fa-solid fa-circle-plus"></i>
+            <i class="fa-solid fa-heart"></i>
+            <a href="/chat"> <i class="fa-solid fa-comment"></i></a>
+            <i>
+                <a href="/profile">
+                    <div id="image-container">
+                        <img id="profile-image" src="<%= path %>" alt="" srcset="" />
+                        <div id="crop-preview"></div>
+                    </div>
+                </a>
+            </i>
+            <i id="setting" onclick="rotate()" class="fa-solid fa-gear"></i>
+        </div>
+    </div>
+</div>
     <!-- <div class="sidebar"></div> -->
 
-<%- include('navbar.ejs') -%>
     <div>
         <ul>
             <% if (results) { %>
