@@ -93,3 +93,81 @@ document.getElementById('upload-button').addEventListener('click', function () {
                 return li;
             }
         });
+
+
+
+        // Define the emojis array
+console.log("Emoji picker JavaScript file loaded");
+
+
+// Toggle emoji picker visibility
+document.getElementById('emoji-button').addEventListener('click', function (event) {
+    event.stopPropagation(); // Prevent the click event from bubbling up to the document body
+    const emojiPicker = document.getElementById('emoji-picker');
+    emojiPicker.style.display = emojiPicker.style.display === 'block' ? 'none' : 'block';
+});
+
+// Handle emoji selection
+document.querySelectorAll('.emoji').forEach(function (emoji) {
+    emoji.addEventListener('click', function () {
+        const selectedEmoji = this.textContent;
+        const messageInput = document.getElementById('message-input');
+        messageInput.value += selectedEmoji; // Append selected emoji to the input text
+
+        // Add emoji to recent emojis (maintain stack of 10 emojis)
+        if (recentEmojis.length >= 10) {
+            // remove index 0 (the oldest emoji)
+            recentEmojis.splice(0, 1);
+        }
+        recentEmojis.push(selectedEmoji); // Add the new emoji to the end
+        console.log(recentEmojis)
+        renderRecentEmojis(); // Render recent emojis
+    });
+});
+
+// Handle search input
+document.getElementById('search-input').addEventListener('input', function () {
+    const searchValue = this.value.toLowerCase();
+    document.querySelectorAll('.emoji').forEach(function (emoji) {
+        const emojiText = emoji.textContent.toLowerCase();
+        if (emojiText.includes(searchValue)) {
+            emoji.style.display = 'inline-block'; // Show emoji if it matches search
+        } else {
+            emoji.style.display = 'none'; // Hide emoji if it doesn't match search
+        }
+    });
+
+    // Print message to console for debugging
+    console.log("Search bar is not working properly. Search value: ", searchValue);
+});
+
+// Close emoji picker when clicking outside
+document.body.addEventListener('click', function (event) {
+    const emojiPicker = document.getElementById('emoji-picker');
+    const emojiButton = document.getElementById('emoji-button');
+
+    // Check if the click event originated from within the emoji picker or the emoji button
+    if (!emojiPicker.contains(event.target) && event.target !== emojiButton) {
+        emojiPicker.style.display = 'none'; // Close the emoji picker
+    }
+});
+
+// Array to store recent emojis
+const recentEmojis = [];
+
+// Function to render recent emojis
+function renderRecentEmojis() {
+    const recentEmojisList = document.querySelector('.recent-emojis-list');
+    recentEmojisList.innerHTML = ''; // Clear previous emojis
+    for (let index = recentEmojis.length - 1; index >= 0; index--) {
+        const emoji = recentEmojis[index];
+        const emojiElement = document.createElement('span');
+        emojiElement.classList.add('recent-emoji');
+        emojiElement.textContent = emoji;
+        emojiElement.addEventListener('click', function () {
+            const messageInput = document.getElementById('message-input');
+            messageInput.value += emoji; // Append selected emoji to the input text
+        });
+        recentEmojisList.appendChild(emojiElement);
+    }
+}

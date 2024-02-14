@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slidin Chat</title>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/cssAREcss/profile.css">
+    <link rel="stylesheet" href="/public/cssAREcss/chat.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="slidin-logo">Slidin'</div>
+        <!-- <div class="slidin-logo"><img src="/homeimages/cubes.webp" alt=""></div> -->
+        <div class="nav-container">
+            <div class="nav-icons">
+                <a href="/home"><i class="fa-solid fa-house-chimney" style="color: #fff;"></i></a>
+                <div class="search-container">
+
+                    <input type="text" id="search" placeholder="&#xF002;  Search" style="font-family:Arial, FontAwesome"
+                        name="value">
+                </div>
+            </div>
+            <div class="nav-icons">
+                <i class="fa-solid fa-circle-plus"></i>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-comment"></i>
+                <i>
+                    <div id="image-container">
+                        <img id="profile-image" src="<%=path %>" alt="" srcset="" />
+                        <div id="crop-preview"></div>
+                    </div>
+                    <div class="nav-item profile">
+                    </div>
+                </i>
+                <i id="setting" onclick="togglePopup()" class="fa-solid fa-gear"></i>
+                <div class="popup" id="popup-1">
+                    <div class="overlay">
+                        <div class="content">
+                            <div class="close-btn" onclick="togglePopup()">&times;</div>
+                            <a href="#">
+                                <p>Share your ID</p>
+                            </a>
+                            <a href="#">
+                                <p>Privacy and Settings</p>
+                            </a>
+                            <a href="#">
+                                <p>Logout</p>
+                            </a>
+                            <p onclick="togglePopup()">Cancel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chat-body">
+        <div class="sidebar">
+            <h2>Chats</h2>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search">
+            </div>
+            <div class="friends-chat">
+
+                <div class="single-chat">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    </div>
+                    <div class="friend-info">
+                        <div class="name">Friend's Name</div>
+                        <div class="recent-message">Hello! This is a sample message.</div>
+                    </div>
+                    <div class="message-time">12:34 PM</div>
+                </div>
+                <div class="single-chat">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    </div>
+                    <div class="friend-info">
+                        <div class="name">Friend's Name</div>
+                        <div class="recent-message">Hello! This is a sample message.</div>
+                    </div>
+                    <div class="message-time">12:34 PM</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat-container">
+            <div class="header">
+                <div>Friend's Name</div>
+                <div>Online</div>
+            </div>
+
+            <div class="message-container">
+                <div class="message sender">
+                    <div class="avatar">
+                        <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    </div>
+                    <div class="message-bubble">
+
+                        <div class="message-info">12:35 PM</div>
+                    </div>
+
+                </div>
+
+                <div class="message receiver">
+                    <div class="message-bubble">
+
+                        <div class="message-info">12:36 PM</div>
+                    </div>
+                </div>
+
+                <!-- More messages go here -->
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div class="input-container">
+        <button id="upload-button"><i class="fa-solid fa-images"></i></button>
+        <button id="emoji-button"><i class="fa-regular fa-face-smile"></i></button>
+        <div class="emoji-picker" id="emoji-picker">
+            <input type="text" id="search-input" placeholder="Search emojis...">
+            <div class="recent-emojis">
+                <h2>Recent Emojis</h2>
+                <div class="emojis recent-emojis-list"></div>
+            </div>
+
+            <div class="emoji-categories">
+                <div class="category">
+                    <h2>Smileys & Emotion</h2>
+                    <div class="emojis">
+                        <!-- Example emojis -->
+                        <span class="emoji">😊</span>
+                        <span class="emoji">😂</span>
+                        <!-- Add more emojis here -->
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Animals & Nature</h2>
+                    <div class="emojis">
+                        <!-- Example emojis -->
+                        <span class="emoji">🐶</span>
+                        <span class="emoji">🐱</span>
+                        <!-- Add more emojis here -->
+                    </div>
+                </div>
+                <!-- Add more categories as needed -->
+            </div>
+
+        </div>
+        <input type="text" id="message-input" placeholder="Start Slidin...">
+        <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+        <input type="file" id="file-input" style="display: none;"> <!-- Hidden file input -->
+    </div>
+
+
+
+
+
+
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/scriptingisJS/chat.js"></script>
+
+    <script>
+
+        // Toggle emoji picker visibility
+        document.getElementById('emoji-button').addEventListener('click', function (event) {
+            event.stopPropagation(); // Prevent the click event from bubbling up to the document body
+            const emojiPicker = document.getElementById('emoji-picker');
+            emojiPicker.style.display = emojiPicker.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Handle emoji selection
+        document.querySelectorAll('.emoji').forEach(function (emoji) {
+            emoji.addEventListener('click', function () {
+                const selectedEmoji = this.textContent;
+                const messageInput = document.getElementById('message-input');
+                messageInput.value += selectedEmoji; // Append selected emoji to the input text
+            });
+        });
+
+        // Close emoji picker when clicking outside
+        document.body.addEventListener('click', function (event) {
+            const emojiPicker = document.getElementById('emoji-picker');
+            const emojiButton = document.getElementById('emoji-button');
+
+            // Check if the click event originated from within the emoji picker or the emoji button
+            if (!emojiPicker.contains(event.target) && event.target !== emojiButton) {
+                emojiPicker.style.display = 'none'; // Close the emoji picker
+            }
+        });
+
+
+        const recentEmojis = []; // Array to store recent emojis
+
+        // Function to render recent emojis
+        function renderRecentEmojis() {
+            recentEmojis.reverse(); // Reverse the array to show the most recent emojis first
+            const recentEmojisList = document.querySelector('.recent-emojis-list');
+            recentEmojisList.innerHTML = ''; // Clear previous emojis
+
+            recentEmojis.forEach(emoji => {
+                const emojiElement = document.createElement('span');
+                emojiElement.classList.add('recent-emoji');
+                emojiElement.textContent = emoji;
+                emojiElement.addEventListener('click', function () {
+                    const messageInput = document.getElementById('message-input');
+                    messageInput.value += emoji; // Append selected emoji to the input text
+                });
+                recentEmojisList.appendChild(emojiElement);
+            });
+        }
+
+        // Handle emoji selection
+        document.querySelectorAll('.emoji').forEach(function (emoji) {
+            emoji.addEventListener('click', function () {
+                const selectedEmoji = this.textContent;
+                const messageInput = document.getElementById('message-input');
+                messageInput.value += selectedEmoji; // Append selected emoji to the input text
+
+                // Add emoji to recent emojis (maintain stack of 20 emojis)
+                if (recentEmojis.length >= 20) {
+                    recentEmojis.shift(); // Remove the oldest emoji
+                }
+                recentEmojis.push(selectedEmoji); // Add the new emoji to the end
+                renderRecentEmojis(); // Render recent emojis
+            });
+        });
+
+        // Handle search input
+        document.getElementById('search-input').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            document.querySelectorAll('.emoji').forEach(function (emoji) {
+                const emojiText = emoji.textContent.toLowerCase();
+                if (emojiText.includes(searchValue)) {
+                    emoji.style.display = 'inline-block'; // Show emoji if it matches search
+                } else {
+                    emoji.style.display = 'none'; // Hide emoji if it doesn't match search
+                }
+            });
+        });
+
+
+
+        // Handle search input
+        document.getElementById('search-input').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            document.querySelectorAll('.emoji').forEach(function (emoji) {
+                const emojiText = emoji.textContent.toLowerCase();
+                if (emojiText.includes(searchValue)) {
+                    emoji.style.display = 'inline-block'; // Show emoji if it matches search
+                } else {
+                    emoji.style.display = 'none'; // Hide emoji if it doesn't match search
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
+
+
+.chat-body {
+display: grid;
+grid-template-columns: 500px auto;
+grid-template-rows: auto;
+height: 90lvh;
+/* Fixed height for the chat body */
+
+.sidebar {
+width: 500px;
+height: 100%;
+overflow-y: auto;
+scrollbar-width: thin;
+scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+
+h2 {
+margin: 5px;
+color: aqua;
+
+}
+
+.search-container {
+margin-top: 20px;
+display: flex;
+justify-content: center;
+
+.search-container input[type="text"] {
+width: calc(100% - 15%);
+}
+}
+
+.friends-chat {
+margin-top: 20px;
+overflow-y: auto;
+
+/* Added */
+.single-chat {
+display: flex;
+align-items: center;
+margin: 0 10px;
+padding: 20px;
+
+
+.friend-info {
+flex-grow: 1;
+
+
+.name {
+font-weight: bold;
+margin-bottom: 5px;
+}
+
+.recent-message {
+color: gray;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+max-width: 300px;
+}
+}
+
+.message-time {
+color: gray;
+}
+}
+
+.single-chat:hover {
+background-color: #4f4f4f;
+}
+}
+}
+
+/* .sidebar::-webkit-scrollbar {
+width: 8px;
+height: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+background-color: rgba(155, 155, 155, 0.5);
+border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+background-color: transparent;
+} */
+
+
+}
+
+/* =======================sidebar ends=========================== */
+
+.avatar {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+overflow: hidden;
+margin-right: 10px;
+
+img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+}
+
+
+
+
+
+
+
+
+
+/* ========================chat- container =============================== */
+
+
+.chat-container {
+height: 100%;
+overflow-y: auto;
+scrollbar-width: thin;
+scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+position: relative;
+display: flex;
+flex-direction: column;
+}
+
+
+.chat-container .header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px;
+}
+
+.chat-container .header>div {
+font-weight: bold;
+}
+
+.message-container {
+padding: 10px;
+
+.message {
+display: flex;
+margin-bottom: 10px;
+}
+}
+
+
+/* .message-container {
+display: flex;
+flex-direction: column;
+} */
+
+/* .message.sender {
+align-self: flex-start;
+}
+
+.message.receiver {
+align-self: flex-end;
+} */
+
+
+.message.receiver .message-bubble {
+background-color: lightblue;
+}
+
+.message-bubble {
+padding: 8px;
+border-radius: 10px;
+width: 55%;
+background-color: #4f4f4f;
+
+.message-info {
+color: gray;
+font-size: 0.7em;
+display: flex;
+justify-content: end;
+}
+}
+
+/* .sender {
+display: flex;
+justify-content: flex-start;
+} */
+
+/* works */
+.receiver {
+display: flex;
+justify-content: flex-end;
+}
+
+
+.input-container input[type="text"] {
+flex-grow: 1;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 20px;
+margin-right: 10px;
+}
+
+.input-container button {
+border: none;
+background-color: transparent;
+cursor: pointer;
+}
+
+.input-container {
+position: fixed;
+bottom: 0;
+right: 0;
+width: calc(100% - 500px);
+display: flex;
+align-items: center;
+padding: 10px;
+border-top: 1px solid #ccc;
+background-color: #4f4f4f;
+color: white;
+margin-top: 50px;
+}
+
+
+/*
+
+.message-container {
+flex-grow: 1;
+overflow-y: auto;
+scrollbar-width: thin;
+scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+} */
+/*
+.message-container::-webkit-scrollbar {
+width: 8px;
+height: 8px;
+}
+
+.message-container::-webkit-scrollbar-thumb {
+background-color: rgba(155, 155, 155, 0.5);
+border-radius: 4px;
+}
+
+.message-container::-webkit-scrollbar-track {
+background-color: transparent;
+}
+*/
+
+
+.message-container {
+display: flex;
+flex-direction: column;
+padding-bottom: 60px;
+/* Add padding to create space for input container */
+/* You can adjust the value as needed */
+}
+
+.input-container button,
+.input-container i {
+margin-right: 8px;
+/* Adjust the margin as needed */
+}
+
+
+
+.emoji-picker {
+position: absolute;
+color: black;
+bottom: 50px;
+left: 0;
+background-color: rgb(161, 161, 161);
+border: 1px solid #ccc;
+padding: 10px;
+display: none;
+/* Hide by default */
+width: 300px;
+/* Set your desired width here */
+max-height: 400px;
+/* Adjust max height as needed */
+overflow-y: auto;
+/* Vertical scroll */
+overflow-x: auto;
+/* Horizontal scroll */
+border: 1px solid #ccc;
+background-color: white;
+padding: 10px;
+}
+
+
+.emoji-categories {
+padding: 10px;
+}
+
+.category {
+margin-bottom: 20px;
+}
+
+.category h2 {
+font-size: 18px;
+margin-bottom: 10px;
+}
+
+.emojis {
+display: flex;
+flex-wrap: wrap;
+}
+
+.emoji {
+font-size: 24px;
+cursor: pointer;
+margin-right: 10px;
+margin-bottom: 10px;
+}
+
+.emoji-preview {
+padding: 10px;
+border-bottom: 1px solid #ccc;
+/* Border bottom for preview section */
+}
+
+.preview {
+font-size: 24px;
+}
+
+
+.recent-emojis {
+margin-top: 20px;
+}
+
+.recent-emojis h2 {
+font-size: 16px;
+margin-bottom: 5px;
+}
+
+.recent-emojis-list {
+display: flex;
+flex-wrap: wrap;
+}
+
+.recent-emoji {
+font-size: 24px;
+cursor: pointer;
+margin-right: 10px;
+margin-bottom: 10px;
+}

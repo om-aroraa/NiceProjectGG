@@ -1,118 +1,73 @@
+/* .chat-body */
 .chat-body {
     display: grid;
     grid-template-columns: 500px auto;
     grid-template-rows: auto;
-    height: 90lvh;
+    height: 90vh;
     /* Fixed height for the chat body */
-
-    .sidebar {
-        width: 500px;
-        height: 100%;
-        overflow-y: auto;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
-
-        h2 {
-            margin: 5px;
-            color: aqua;
-
-        }
-
-        .search-container {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-
-            .search-container input[type="text"] {
-                width: calc(100% - 15%);
-            }
-        }
-
-        .friends-chat {
-            margin-top: 20px;
-            overflow-y: auto;
-
-            /* Added */
-            .single-chat {
-                display: flex;
-                align-items: center;
-                margin: 0 10px;
-                padding: 20px;
-
-
-                .friend-info {
-                    flex-grow: 1;
-                    
-
-                    .name {
-                        font-weight: bold;
-                        margin-bottom: 5px;
-                    }
-
-                    .recent-message {
-                        color: gray;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                        max-width: 300px;
-                    }
-                }
-
-                .message-time {
-                    color: gray;
-                }
-            }
-
-            .single-chat:hover {
-                background-color: #4f4f4f;
-            }
-        }
-    }
-
-    /* .sidebar::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-
-    .sidebar::-webkit-scrollbar-thumb {
-        background-color: rgba(155, 155, 155, 0.5);
-        border-radius: 4px;
-    }
-
-    .sidebar::-webkit-scrollbar-track {
-        background-color: transparent;
-    } */
-
-
 }
 
-/* =======================sidebar  ends=========================== */
+.chat-body .sidebar {
+    width: 500px;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
 
-.avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.chat-body .sidebar h2 {
+    margin: 5px;
+    color: aqua;
+}
+
+.chat-body .sidebar .search-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-body .sidebar .search-container input[type="text"] {
+    width: calc(100% - 15%);
+}
+
+.chat-body .sidebar .friends-chat {
+    margin-top: 20px;
+    overflow-y: auto;
+}
+
+.chat-body .sidebar .single-chat {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    padding: 20px;
+}
+
+.chat-body .sidebar .single-chat .friend-info {
+    flex-grow: 1;
+}
+
+.chat-body .sidebar .single-chat .friend-info .name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.chat-body .sidebar .single-chat .friend-info .recent-message {
+    color: gray;
     overflow: hidden;
-    margin-right: 10px;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 300px;
 }
 
+.chat-body .sidebar .single-chat .message-time {
+    color: gray;
+}
 
+.chat-body .sidebar .single-chat:hover {
+    background-color: #4f4f4f;
+}
 
-
-
-
-
-
-
-/* ========================chat- container =============================== */
-
-
+/* .chat-container */
 .chat-container {
     height: 100%;
     overflow-y: auto;
@@ -122,7 +77,6 @@
     display: flex;
     flex-direction: column;
 }
-
 
 .chat-container .header {
     display: flex;
@@ -135,59 +89,37 @@
     font-weight: bold;
 }
 
-.message-container {
+.chat-container .message-container {
     padding: 10px;
-
-    .message {
-        display: flex;
-        margin-bottom: 10px;
-    }
 }
 
-
-/* .message-container {
+.chat-container .message-container .message {
     display: flex;
-    flex-direction: column;
-} */
-
-/* .message.sender {
-    align-self: flex-start;
+    margin-bottom: 10px;
 }
 
-.message.receiver {
-    align-self: flex-end;
-} */
-
-
-.message.receiver .message-bubble {
+.chat-container .message.receiver .message-bubble {
     background-color: lightblue;
 }
 
-.message-bubble {
+.chat-container .message-bubble {
     padding: 8px;
     border-radius: 10px;
     width: 55%;
     background-color: #4f4f4f;
-
-    .message-info {
-        color: gray;
-        font-size: 0.7em;
-            display: flex;
-                justify-content: end;
-    }
 }
 
-/* .sender {
+.chat-container .message-bubble .message-info {
+    color: gray;
+    font-size: 0.7em;
     display: flex;
-    justify-content: flex-start;
-} */
+    justify-content: end;
+}
 
-/* works */
-.receiver {
+.chat-container .message.receiver {
     display: flex;
     justify-content: flex-end;
 }
-
 
 .input-container input[type="text"] {
     flex-grow: 1;
@@ -217,48 +149,7 @@
     margin-top: 50px;
 }
 
-
-/* 
-
-.message-container {
-    flex-grow: 1;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
-} */
-/* 
-.message-container::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-.message-container::-webkit-scrollbar-thumb {
-    background-color: rgba(155, 155, 155, 0.5);
-    border-radius: 4px;
-}
-
-.message-container::-webkit-scrollbar-track {
-    background-color: transparent;
-}
- */
-
-
-.message-container {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 60px;
-    /* Add padding to create space for input container */
-    /* You can adjust the value as needed */
-}
-
-.input-container button,
-.input-container i {
-    margin-right: 8px;
-    /* Adjust the margin as needed */
-}
-
-
-
+/* .emoji-picker */
 .emoji-picker {
     position: absolute;
     color: black;
@@ -269,51 +160,77 @@
     padding: 10px;
     display: none;
     /* Hide by default */
-            width: 300px;
-            /* Set your desired width here */
-            max-height: 400px;
-            /* Adjust max height as needed */
-            overflow-y: auto;
-            /* Vertical scroll */
-            overflow-x: auto;
-            /* Horizontal scroll */
-            border: 1px solid #ccc;
-            background-color: white;
-            padding: 10px;
-        }
-
-
-.emoji-categories {
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+    background-color: white;
     padding: 10px;
 }
 
-.category {
+.emoji-picker .emoji-categories {
+    padding: 10px;
+}
+
+.emoji-picker .category {
     margin-bottom: 20px;
 }
 
-.category h2 {
+.emoji-picker .category h2 {
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-.emojis {
+.emoji-picker .emojis {
     display: flex;
     flex-wrap: wrap;
 }
 
-.emoji {
+.emoji-picker .emoji {
     font-size: 24px;
     cursor: pointer;
     margin-right: 10px;
     margin-bottom: 10px;
 }
 
-.emoji-preview {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    /* Border bottom for preview section */
+.emoji-picker .recent-emojis {
+    margin-top: 20px;
 }
 
-.preview {
+.emoji-picker .recent-emojis h2 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.emoji-picker .recent-emojis-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.emoji-picker .recent-emoji {
     font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* Add this to your existing CSS */
+
+.search-results {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.search-results .emoji {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }

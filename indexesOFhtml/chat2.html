@@ -21,8 +21,8 @@
                 <a href="/home"><i class="fa-solid fa-house-chimney" style="color: #fff;"></i></a>
                 <div class="search-container">
 
-                    <input type="text" id="search" placeholder="&#xF002;  Search" style="font-family:Arial, FontAwesome"
-                        name="value">
+                    <input type="text" id="search-bar" placeholder="&#xF002;  Search"
+                        style="font-family:Arial, FontAwesome" name="value">
                 </div>
             </div>
             <div class="nav-icons">
@@ -62,7 +62,7 @@
         <div class="sidebar">
             <h2>Chats</h2>
             <div class="search-container">
-                <input type="text" id="search" placeholder="Search">
+                <input type="text" id="search-bar-sidebar" placeholder="Search">
             </div>
             <div class="friends-chat">
 
@@ -129,6 +129,13 @@
         <button id="upload-button"><i class="fa-solid fa-images"></i></button>
         <button id="emoji-button"><i class="fa-regular fa-face-smile"></i></button>
         <div class="emoji-picker" id="emoji-picker">
+        <input type="text" id="search-input" placeholder="Search emojis...">
+        <div class="search-results" id="search-results"></div> <!-- New div for search results -->
+        <div class="recent-emojis">
+            <h2>Recent Emojis</h2>
+            <div class="emojis recent-emojis-list"></div>
+        </div>
+
             <div class="emoji-categories">
                 <div class="category">
                     <h2>Smileys & Emotion</h2>
@@ -145,86 +152,14 @@
                         <!-- Example emojis -->
                         <span class="emoji">🐶</span>
                         <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
-                        <span class="emoji">🐶</span>
-                        <span class="emoji">🐱</span>
                         <!-- Add more emojis here -->
                     </div>
                 </div>
                 <!-- Add more categories as needed -->
             </div>
-            
+
         </div>
-        <input type="text" id="message-input" placeholder="Start Slidin...">
+<input type="text" id="message-input" placeholder="Start Slidin...">
         <button id="send-button"><i class="fas fa-paper-plane"></i></button>
         <input type="file" id="file-input" style="display: none;"> <!-- Hidden file input -->
     </div>
@@ -238,40 +173,15 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/scriptingisJS/chat.js"></script>
-
-    <script>
-       
-    // Toggle emoji picker visibility
-    document.getElementById('emoji-button').addEventListener('click', function (event) {
-        event.stopPropagation(); // Prevent the click event from bubbling up to the document body
-        const emojiPicker = document.getElementById('emoji-picker');
-        emojiPicker.style.display = emojiPicker.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Handle emoji selection
-    document.querySelectorAll('.emoji').forEach(function (emoji) {
-        emoji.addEventListener('click', function () {
-            const selectedEmoji = this.textContent;
-            const messageInput = document.getElementById('message-input');
-            messageInput.value += selectedEmoji; // Append selected emoji to the input text
-        });
-    });
-
-    // Close emoji picker when clicking outside
-    document.body.addEventListener('click', function (event) {
-        const emojiPicker = document.getElementById('emoji-picker');
-        const emojiButton = document.getElementById('emoji-button');
-
-        // Check if the click event originated from within the emoji picker or the emoji button
-        if (!emojiPicker.contains(event.target) && event.target !== emojiButton) {
-            emojiPicker.style.display = 'none'; // Close the emoji picker
-        }
-    });
-
-
+    <script src="emoji-picker.js"></script>
+        <script>
+    
+    
+    
+ 
 
 
     </script>
-</body>
+
 
 </html>
