@@ -14,19 +14,20 @@
     <!-- <div class="sidebar"></div> -->
 
 <%- include('navbar.ejs') -%>
-
     <div>
         <ul>
             <% if (results) { %>
                 <% results.forEach(function(result) { %>
                     <li>
                         <div class="card">
-                            <a href="/profilepics/<%= result.username %>">
+                            <a href="/profile/<%= result.username %>">
                                 <div class="card_load">
-                                    <img src="/uploads/<%= result.profilePic %>" alt="Profile Pic">
+                                    <img id="search-profilepics" src="<%= result.imgpath %>" alt="Profile Pic">
                                 </div>
                                 <div class="card_load_extreme_title">   
-                                    <span><%= result.username %></span>
+                                    <span>
+                                        <%= result.username%>
+                                    </span>
                                 </div>
                     </a>
                     <div class="card_load_extreme_descripion">

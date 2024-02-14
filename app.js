@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
 
 app.get("/logout", (req, res) => {
   res.clearCookie("user");
+  res.clearCookie("userimg");
   res.redirect("/login");
 });
 
@@ -48,15 +49,22 @@ app.get("/login", (req, res) => {
   return res.render("login", { message: "" });
 });
 
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { username, password } = req.body;
-  db.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
-    if (err) throw err;
-    if (results.length === 0) return res.render('login', { message: 'Username does not exist!' });
-    if (results[0].password !== password) return res.render('login', { message: 'Password is incorrect!' });
-    res.cookie('user', username, { maxAge: 3600000 });
-    res.redirect('/profile');
-  });
+  db.query(
+    "SELECT * FROM users WHERE username = ?",
+    [username],
+    (err, results) => {
+      if (err) throw err;
+      if (results.length === 0)
+        return res.render("login", { message: "Username does not exist!" });
+      if (results[0].password !== password)
+        return res.render("login", { message: "Password is incorrect!" });
+      res.cookie("user", username, { maxAge: 3600000 });
+      res.cookie("userimg", results[0].imgpath, { maxAge: 3600000 });
+      res.redirect("/profile");
+    }
+  );
 });
 
 app.post("/", (req, res) => {
@@ -105,10 +113,12 @@ app.post("/", (req, res) => {
                   function (err) {
                     if (err) return res.status(500).send(err);
                     res.cookie("user", username, { maxAge: 3600000 });
+                    res.cookie("userimg", imgpath, { maxAge: 3600000 });
                     res.redirect("/profile");
                   }
                 );
               } else {
+                res.cookie("user", username, { maxAge: 3600000 });
                 res.cookie("user", username, { maxAge: 3600000 });
                 res.redirect("/profile");
               }
@@ -134,31 +144,46 @@ app.get("/profile", (req, res) => {
       if (!imgpath) imgpath = "/profilepics/default.png";
       res.render("profile", {
         path: imgpath,
+        userpath: decodeURIComponent(req.cookies.userimg),
         username: username,
         fullname: fullname,
         results: false,
         value: false,
       });
     }
-    );
-  });
-  
+  );
+});
+
 app.post("/profile", (req, res) => {
   let username = req.cookies.user;
   if (!username) return res.redirect("/");
   const { value } = req.body;
-  let imgpath
+  // URL Decode userimg cookie
+  let imgpath = decodeURIComponent(req.cookies.userimg);
   if (!imgpath) imgpath = "/profilepics/default.png";
-  if (value === "") return res.render("profile", {path:imgpath, username:username, results: false, value: false });
+  if (value === "")
+    return res.render("profile", {
+      path: imgpath,
+      username: username,
+      results: false,
+      value: false,
+    });
   db.query(
-    "SELECT username FROM users WHERE username LIKE ?",
+    "SELECT username, imgpath FROM users WHERE username LIKE ?",
     [value + "%"],
     (err, results) => {
       if (err) throw err;
-      res.render("profile", { path:imgpath, username:username, results: results, value: value });
+      console.log(results);
+      res.render("profile", {
+        path: imgpath,
+        username: username,
+        results: results,
+        value: value,
+      });
     }
   );
 });
+
 
 app.get("/home", (req, res) => {
   let username = req.cookies.user;
@@ -171,7 +196,13 @@ app.get("/home", (req, res) => {
       if (results.length === 0) return res.send("No user with that username");
       let imgpath = results[0].imgpath;
       if (!imgpath) imgpath = "/profilepics/default.png";
-      res.render("home", { path: imgpath, username: username, results: false, value: false });
+      res.render("home", {
+        userpath: decodeURIComponent(req.cookies.userimg),
+        path: imgpath,
+        username: username,
+        results: false,
+        value: false,
+      });
     }
   );
 });
@@ -180,68 +211,105 @@ app.post("/home", (req, res) => {
   let username = req.cookies.user;
   if (!username) return res.redirect("/");
   const { value } = req.body;
-  let imgpath;
+  let imgpath = decodeURIComponent(req.cookies.userimg);
   if (!imgpath) imgpath = "/profilepics/default.png";
-  if (value === "") return res.render("home", { path:imgpath, username:username, results: false, value: false });
+  if (value === "")
+    return res.render("home", {
+      path: imgpath,
+      username: username,
+      results: false,
+      value: false,
+    });
   db.query(
-    "SELECT username FROM users WHERE username LIKE ?",
+    "SELECT username, imgpath FROM users WHERE username LIKE ?",
     [value + "%"],
     (err, results) => {
       if (err) throw err;
-      res.render("home", {path:imgpath, username:username, results: results, value: value });
+      res.render("home", {
+        path: imgpath,
+        username: username,
+        results: results,
+        value: value,
+      });
     }
   );
 });
+
+app.get("/profile/:username", (req, res) => {
+  let username = req.params.username;
+  if (!username) return res.redirect("/");
+  db.query(
+    "SELECT imgpath, fullname FROM users WHERE username = ?",
+    [username],
+    (err, results) => {
+      if (err) throw err;
+      if (results.length === 0) return res.send("No user with that username");
+      let imgpath = results[0].imgpath;
+      let fullname = results[0].fullname;
+      if (!imgpath) imgpath = "/profilepics/default.png";
+      res.render("viewprofile", {
+        userpath: decodeURIComponent(req.cookies.userimg),
+        path: imgpath,
+        username: username,
+        fullname: fullname,
+        results: false,
+        value: false,
+      });
+    }
+  );
+});
+
 
 app.get("/chat", (req, res) => {
   res.sendFile(path.join(__dirname, "indexesOfhtml", "chat.html"));
 });
 
 // render chat page
-app.get('/chat', (req, res) => {
-  res.render('chat');
-});
-
-
-server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.get("/chat", (req, res) => {
+  res.render("chat");
 });
 
 // Initialize chat data
 const chatData = [];
 
 // Socket.IO connection
-io.on('connection', (socket) => {
-
+io.on("connection", (socket) => {
   // Load chat history from cookies
   const savedChats = socket.handshake.headers.cookie; // Access cookies from handshake
   if (savedChats) {
-    const parsedCookies = require('cookie').parse(savedChats);
+    const parsedCookies = require("cookie").parse(savedChats);
     const chatHistoryCookie = parsedCookies.savedChats;
     if (chatHistoryCookie) {
       const chatHistory = JSON.parse(chatHistoryCookie);
-      socket.emit('loadHistory', chatHistory);
+      socket.emit("loadHistory", chatHistory);
     }
   }
 
-   // Receive and broadcast messages
-  socket.on('chat message', (msg) => {
+  // Receive and broadcast messages
+  socket.on("chat message", (msg) => {
     let date = new Date();
-    let ampm = date.getHours() >= 12 ? 'PM' : 'AM';
-    let hours = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
-    let formattedTime = `${hours}:${date.getMinutes()} ${ampm}`
-    chatData.push({ proflie: "/profilepics/default.png", message: msg, time: formattedTime });
-    io.emit('chat message', msg);
+    let ampm = date.getHours() >= 12 ? "PM" : "AM";
+    let hours = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
+    let formattedTime = `${hours}:${date.getMinutes()} ${ampm}`;
+    chatData.push({
+      proflie: "/profilepics/default.png",
+      message: msg,
+      time: formattedTime,
+    });
+    io.emit("chat message", msg);
 
     // Save chat history to cookies
     const updatedChatsCookie = JSON.stringify(chatData);
-    socket.emit('updateHistoryCookie', updatedChatsCookie);
+    socket.emit("updateHistoryCookie", updatedChatsCookie);
   });
 
   // Handle disconnection
-  socket.on('disconnect', () => {
-    console.log('User disconnected');
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
   });
 });
 
 
+server.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});

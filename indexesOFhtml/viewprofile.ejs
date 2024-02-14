@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://kit.fontawesome.com/1144a62fa6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/cssAREcss/profile.css">
 </head>
+
 <body>
 <div class="navbar">
         <div class="slidin-logo">Slidin'</div>
@@ -29,7 +31,7 @@
                 <i>
                     <a href="/profile">
                         <div id="image-container">
-                            <img id="profile-image" src="<%= path %>" alt="" srcset="" />
+                            <img id="profile-image" src="<%= userpath %>" alt="" srcset="" />
                             <div id="crop-preview"></div>
                         </div>
                     </a>
@@ -46,7 +48,7 @@
                     <div class="card">
                         <a href="/profile/<%= result.username %>">
                             <div class="card_load">
-                                <img id="search-profilepics" src="<%= result.imgpath %>" alt="Profile Pic">   
+                                <img id="search-profilepics" src="<%= path %>" alt="Profile Pic">                                
                             </div>
                             <div class="card_load_extreme_title">
                                 <span>
@@ -85,23 +87,6 @@
                 <p>Friends</p>
             </div>
         </div>
-        <div class="profile-actions">
-            <button>Edit Profile</button>
-            <button>View Archive</button>
-        </div>
-    </div>
-    <div class="post-grid">
-        <!-- Post placeholders -->
-        <div class="post"><img
-                src="/profilepics/created-random-people-using-chatgpt-midjourney-do-you-know-v0-q1aa450i5dqb1.webp"
-                alt=""></div>
-        <div class="post"><img
-                src="/profilepics/created-random-people-using-chatgpt-midjourney-do-you-know-v0-q1aa450i5dqb1.webp"
-                alt=""></div>
-        <div class="post"><img
-                src="/profilepics/created-random-people-using-chatgpt-midjourney-do-you-know-v0-q1aa450i5dqb1.webp"
-                alt=""></div>
-
     </div>
     <script type="text/javascript">
         function submitForm() {

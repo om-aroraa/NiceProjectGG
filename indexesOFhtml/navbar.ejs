@@ -14,10 +14,10 @@
             <div class="nav-icons">
                 <a href="/home"><i class="fa-solid fa-house-chimney" style="color: #fff;"></i></a>
                 <div class="search-container">
-                    <form action="/home
-            " method="post" enctype="multipart/form-data" id="searchForm">
-                        <input type="text" id="search" placeholder="&#x1F50E;&#xFE0E; Search.." name="value" oninput="submitForm()" <% if
-                            (value) { %> value="<%= value %>" <% } %>>
+                    <form action="/home" method="post" enctype="multipart/form-data" id="searchForm">
+                        <input type="text" id="search" placeholder="&#x1F50E;&#xFE0E; Search.." name="value" oninput="submitForm()" <% if (value) { %> 
+                        value="<%= value %>"
+                        <% } %>>
                     </form>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <i>
                     <a href="/profile">
                         <div id="image-container">
-                            <img id="profile-image" src="<%=path %>" alt="" srcset="" />
+                            <img id="profile-image" src="<%= path %>" alt="" srcset="" />
                             <div id="crop-preview"></div>
                         </div>
                     </a>

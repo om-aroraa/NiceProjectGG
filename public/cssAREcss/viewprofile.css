@@ -40,16 +40,16 @@ html {
 
 #search {
     width: 100%;
-    padding: 8px;
+    padding: 8px 14px;
     /* border: 1px solid #ccc; */
-    border-radius: 5px;
+    border-radius: 8px;
     box-sizing: border-box;
-    cursor: pointer;
     color: #fff;
     background-color: #fff;
     color: rgb(0, 0, 0);
     margin-right: 10px;
     border: none;
+    font-size: 16px;
 }
 
 ::placeholder {
@@ -80,47 +80,6 @@ html {
     font-size: 25px;
     cursor: pointer;
 }
-
-#image-container {
-    width: 30px;
-    height: 30px;
-    overflow: hidden;
-    border: 2px solid #ddd;
-    border-radius: 50%;
-    
-}
-
-#profile-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-#crop-preview {
-    border: 2px solid #fff;
-    box-sizing: content-box;
-}
-
-#crop-preview::before,
-#crop-preview::after {
-    content: "";
-    background: rgba(0, 0, 0, 0.5);
-}
-
-#crop-preview::before {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-}
-
-#crop-preview::after {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-}
-
 
 .profile-container {
     background-color: #000000;
@@ -165,7 +124,7 @@ html {
     text-align: left;
     margin-bottom: 15px;
 }
-  
+
 .profile-stats {
     display: flex;
     position: absolute;
@@ -214,7 +173,7 @@ html {
     grid-gap: 20px;
     padding: 20px;
     margin: 0 10%;
-    
+
 }
 
 .post {
@@ -227,27 +186,48 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;;
+    border-radius: 10px;
 }
 
+/* Additional styles for better visual separation */
+/* .nav-container {
+            display: flex;
+        }
+
+        .nav-icons,
+        .search-container {
+            margin-right: 10px;
+        } */
+
+/* .sidebar {
+            background-color: #333;
+            width: 60px;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        } */
+
+
 .card {
-  position: absolute;
-  width: 220px;
-  height: 50px;
-  background: #ffff;
-  box-shadow: 0 1px 25px rgba(0,0,0,0.2);
-  position: absolute;
-  transform: translate(35%, -58%);
-  padding: 5px 10px;
-  z-index: 1;
+    position: absolute;
+    width: 220px;
+    height: 50px;
+    background: #ffff;
+    box-shadow: 0 1px 25px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    transform: translate(35%, -58%);
+    padding: 5px 10px;
+    z-index: 1;
 
 }
 
 .card_load {
-      width: 50px;
+    width: 50px;
     height: 50px;
     position: relative;
     float: left;
+    background: linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%);
     border-radius: 50%;
     background-size: 200% 100%;
     background-position: 50% 0;
@@ -255,11 +235,12 @@ html {
 }
 
 .card_load_extreme_title {
-     width: 117px;
+    width: 117px;
     height: 17px;
     position: relative;
     float: right;
     border-radius: 4px;
+    background: linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%);
     background-size: 200% 100%;
     background-position: 100% 0;
     animation: load89234 2s infinite;
@@ -272,6 +253,7 @@ html {
     position: relative;
     float: right;
     border-radius: 5px;
+    background: linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 40%, #e5e5e5 48%);
     margin-top: 7px;
     background-size: 200% 100%;
     background-position: 100% 0;
@@ -279,28 +261,100 @@ html {
 }
 
 @keyframes load89234 {
-  100% {
-    background-position: -100% 0;
-  }
+    100% {
+        background-position: -100% 0;
+    }
 }
 
-ul{
+ul {
     list-style-type: none;
+    position: absolute;
+    z-index: 1;
 }
 
-li{
+li {
     padding: 31px;
     cursor: pointer;
 }
 
-#search-profilepics{
-    width: 50px;
-    height: 50px;
-    position: relative;
-    float: left;
-    border-radius: 50%;
-    background-size: 200% 100%;
-    background-position: 50% 0;
-    object-fit: cover;
-    overflow: hidden;
+
+
+
+/* ====================== settings ki css ========================== */
+
+
+
+
+
+.popup {
+    .overlay {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100lvw;
+        height: 100lvh;
+        background: rgba(0, 0, 0, 0.751);
+
+        z-index: 1;
+        display: none;
+    }
+
+    .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: #00000099;
+        width: 95%;
+        max-width: 500px;
+        height: fit-content;
+        z-index: 2;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        font-family: "Open Sans", sans-serif;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .close-btn {
+       cursor: pointer;
+       position: absolute;
+       right: 20px;
+       top: 20px;
+       width: 30px;
+       height: 30px;
+       background: red;
+       color: #fff;
+       font-size: 25px;
+       font-weight: 600;
+       line-height: 30px;
+       text-align: center;
+       border-radius: 50%;
+   }
+}
+
+.popup.active .overlay {
+    display: block;
+}
+
+.popup.active .content {
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.content p {
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #fff;
+    padding-bottom: 10px;
+    border-bottom: #ff0000 1px solid;
+    width: 400px;
+}
+
+.content a {
+    color: #fff;
+    text-decoration: none;
 }
